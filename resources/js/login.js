@@ -60,7 +60,7 @@ $('#table_users').DataTable({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },        
-        url: 'http://127.0.0.1:8000/datausers',
+        url: 'https://ransa-reclamo.com/datausers',
         type: 'POST',
     },
     language: {
@@ -97,7 +97,7 @@ $('#table_cities').DataTable({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },        
-        url: 'http://127.0.0.1:8000/datacities',
+        url: 'https://ransa-reclamo.com/datacities',
         type: 'POST',
     },
     language: {
@@ -132,7 +132,7 @@ $('#table_countries').DataTable({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: 'http://127.0.0.1:8000/datacountries',
+        url: 'https://ransa-reclamo.com/datacountries',
         type: 'POST',
     },
     language: {
@@ -164,7 +164,7 @@ $('#table_warehouses').DataTable({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },        
-        url: 'http://127.0.0.1:8000/datawarehouses',
+        url: 'https://ransa-reclamo.com/datawarehouses',
         type: 'POST',
     },
     language: {
@@ -199,7 +199,7 @@ $('#table_departaments').DataTable({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },        
-        url: 'http://127.0.0.1:8000/datadepartaments',
+        url: 'https://ransa-reclamo.com/datadepartaments',
         type: 'POST',
     },
     language: {
@@ -230,7 +230,7 @@ $('#table_employees').DataTable({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },        
-        url: 'http://127.0.0.1:8000/dataemployees',
+        url: 'https://ransa-reclamo.com/dataemployees',
         type: 'POST',
     },
     language: {
@@ -289,7 +289,7 @@ $('#table_clients').DataTable({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },        
-        url: 'http://127.0.0.1:8000/dataclients',
+        url: 'https://ransa-reclamo.com/dataclients',
         type: 'POST',
     },
     language: {
@@ -325,7 +325,7 @@ $('#table_roles').DataTable({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },        
-        url: 'http://127.0.0.1:8000/dataroles',
+        url: 'https://ransa-reclamo.com/dataroles',
         type: 'POST',
     },
     language: {
@@ -359,7 +359,7 @@ $('#table_permissions').DataTable({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },        
-        url: 'http://127.0.0.1:8000/datapermissions',
+        url: 'https://ransa-reclamo.com/datapermissions',
         type: 'POST',
     },
     language: {
@@ -393,7 +393,7 @@ $('#table_suppliers').DataTable({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },        
-        url: 'http://127.0.0.1:8000/datasuppliers',
+        url: 'https://ransa-reclamo.com/datasuppliers',
         type: 'POST',
     },
     language: {
@@ -429,7 +429,7 @@ $('#table_activities').DataTable({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },        
-        url: 'http://127.0.0.1:8000/dataactivities',
+        url: 'https://ransa-reclamo.com/dataactivities',
         type: 'POST',
     },
     language: {
@@ -465,7 +465,7 @@ $('#table_positions').DataTable({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },        
-        url: 'http://127.0.0.1:8000/dataposiciones',
+        url: 'https://ransa-reclamo.com/dataposiciones',
         type: 'POST',
     },
     language: {
@@ -497,7 +497,7 @@ $('#table_actions').DataTable({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },        
-        url: 'http://127.0.0.1:8000/dataacciones',
+        url: 'https://ransa-reclamo.com/dataacciones',
         type: 'POST',
     },
     language: {

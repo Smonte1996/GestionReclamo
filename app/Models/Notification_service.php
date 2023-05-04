@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Notification_service extends Model
 {
     use HasFactory;
-    protected $fillable = ['dissatisfaction_service_id', 'employee_id','observations', 'user_id', 'date_check' ,'end_observations', 'client_id'];
+    protected $fillable = ['dissatisfaction_service_id', 'employee_id','observations', 'user_id', 'date_check' ,'end_observations', 'client_id', 'warehouse_id','employeResponsable_id'];
 
     /**
      * Get the client that owns the Notification_service
@@ -56,5 +56,11 @@ class Notification_service extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    
+    //Se hace la relacion con almacen para obtener datos.
+    public function warehouse()
+    {
+        return $this->belongsTo(Warehouse::class);
     }
 }

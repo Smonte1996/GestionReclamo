@@ -38,14 +38,30 @@
                             @enderror
                     </div>
                 </div>
+                {{--Se agrego el campo de almacen--}}
+                <div class="col-lg-4 col-md-6 pt-2">
+                    <label class="col-sm-3 text-orange-500 col-form-label col-form-label-sm">Almacen</label>
+                    <div class="col-12 col-sm-9">
+                        <select class="form-control @error('almacen_id') is-invalid @enderror"  wire:model="almacen_id" name="almacen_id" >
+                            <option selected value="">Escoger una opción</option>
+                            @foreach ($almacenes as $almacen)
+                                <option value="{{ $almacen->id }}">{{ $almacen->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('almacen_id')
+                        <small id="almacen_idhelpId" class="form-text text-muted invalid-feedback">{{ $message }}</small>
+                        @enderror                        
+                    </div>
+                </div>
+
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <label
-                        class="col-sm-12 col-md-3 text-orange-500 col-form-label col-form-label-sm">Actividad:</label>
+                        class="col-sm-12 col-md-3 text-orange-500 col-form-label col-form-label-sm">Procesos:</label>
                     <div class="col-12 col-md-9">
                         <select class="form-control @error('activity_id') is-invalid @enderror" wire:model="activity_id" name="" id="">
                             <option selected value="">Escoger una opción</option>
                             @foreach ($activities as $activity)
-                                @if ($activity->departament->name == 'Operaciones')
+                                @if ($activity->departament->name)
                                     <option value="{{ $activity->id }}">{{ $activity->name }}</option>
                                 @endif
                             @endforeach
@@ -118,11 +134,17 @@
                             class="text-orange-500 fw-bold ms-5 fs-6">{{ $this->dissatisfaction_service->notification_type }}</label>
                     </div>
                     <div class="col-md-6">
+                    <div class="col-md-6">
+                            <label class="text-lead-500 fs-10">Lider</label>
+                            <label class="text-orange-500 fw-bold ms-5 fs-6">
+                                {{ $lider }}
+                               
+                            </label>
+                        </div>
+                    <br>
                         <label class="text-lead-500 fs-6">Responsables</label>
                         <label class="text-orange-500 fw-bold ms-5 fs-6">
-                            @foreach ($this->dissatisfaction_service->responsibles as $responsible)
-                                {{ $responsible->employee->name . ' ' . $responsible->employee->lastname . ' ; ' }}
-                            @endforeach
+                            {{$responsable}}
                         </label>
                     </div>
                     <div class="col-md-12 pt-3">
@@ -154,7 +176,7 @@
             acceptedFiles: "image/*",
             method: "GET",
             paramName: "images",
-            maxFilesize: 2,
+            maxFilesize: 10,
             addRemoveLinks: true,
             dictRemoveFile: "Eliminar Imagen",
             dictInvalidFileType: "No se puede cargar este tipo de archivo",

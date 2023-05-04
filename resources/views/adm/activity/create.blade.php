@@ -3,7 +3,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Actividades</h3>
+                    <h3>Procesos</h3>
                 </div>
 
                 <div class="title_right">
@@ -24,7 +24,7 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Registro de Nueva Actividad </h2>
+                            <h2>Registro de Nueva Procesos </h2>
                             {{-- <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -51,9 +51,9 @@
                                 @csrf
                                 <div class="row">
                                     <div class="mb-4 col-sm-12 col-md-4">
-                                        <label for="" class="form-label fs-6 text-lead-500">Actividad</label>
+                                        <label for="" class="form-label fs-6 text-lead-500">Procesos</label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"  name="name" id="name"
-                                            aria-describedby="namehelpId" placeholder="Nombre de la actividad" value="{{ old('name') }}">
+                                            aria-describedby="namehelpId" placeholder="Nombre del proceso" value="{{ old('name') }}">
                                         @if ($errors->any())
                                             @error('name')
                                                 <small id="namehelpId" class="form-text text-muted invalid-feedback">{{ $message }}</small>

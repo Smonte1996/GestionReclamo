@@ -37,8 +37,9 @@
                                 <thead>
                                     <tr>
                                         <th>id</th>
+                                        <th data-priority="1">Almacén</th>
                                         <th>Tipo</th>
-                                        <th>Actividad</th>
+                                        <th>Procesos</th>
                                         <th data-priority="1">Cliente</th>
                                         <th data-priority="2">Reportado</th>
                                         <th>Estado</th>

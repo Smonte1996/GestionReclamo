@@ -32,7 +32,7 @@
                     <li><a><i class="fa fa-whmcs"></i> Administración <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             @can('adm.activities.index')
-                                <li><a href="{{ route('adm.activities.index') }}">Actividades</a></li>
+                                <li><a href="{{ route('adm.activities.index') }}">Procesos</a></li>
                             @endcan
                             @can('adm.positions.index')
                                 <li><a href="{{ route('adm.positions.index') }}">Cargos Laborales</a></li>
@@ -82,10 +82,26 @@
                             @endcan
                         </ul>
                     </li>
+                    <li><a><i class="fa fa-whmcs"></i> Administración Reclamo <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">       
+                             @can('adm.General.index') 
+                                <li><a href="{{ route('adm.General.index') }}">Causal General</a></li>
+                              @endcan
+                              @can('adm.General.index')
+                             <li class=""><a
+                                     href="{{ route('adm.Detalle.index') }}">Detalle Causal</a>
+                             </li> 
+                             @endcan
+
+                        </ul>
+                    </li>
                     <li><a><i class="fa fa-edit"></i> Gestión Calidad <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             @can('notifications.index')
                                 <li><a href="{{ route('notifications.index') }}">Servicio No Conforme</a></li>
+                            @endcan
+                            @can('notifications.index')
+                            <li><a href="{{ route('adm.reclamo') }}">Reclamos </a></li>
                             @endcan
                             {{-- <li><a href="form_advanced.html">Advanced Components</a></li>
                             <li><a href="form_validation.html">Form Validation</a></li>

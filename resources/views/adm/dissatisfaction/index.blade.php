@@ -55,7 +55,7 @@
                                     <tr>
                                         <th>id</th>
                                         <th>Descripción</th>
-                                        <th>Actividad</th>
+                                        <th>Procesos</th>
                                         <th>Tipo Notificación</th>
                                         <th>F. Creado</th>
                                         <th>Acciones</th>

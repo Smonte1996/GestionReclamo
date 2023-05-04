@@ -82,7 +82,7 @@
                                         @endif
                                     </div>
                                     <div class="mb-4 col-sm-12 col-md-4">
-                                        <label for="" class="form-label fs-6 text-lead-500">Actividad</label>
+                                        <label for="" class="form-label fs-6 text-lead-500">Procesos</label>
                                         <select name="activity_id" id="activity_id" class="form-select">
                                             <option value="">Selecciona una opción</option>
                                             @foreach ($activities as $activity)

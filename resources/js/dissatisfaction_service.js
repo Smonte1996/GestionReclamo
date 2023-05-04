@@ -6,7 +6,7 @@ $('#table_notification_dissatisfactions').DataTable({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: 'http://127.0.0.1:8000/datanotificationdissatisfactions',
+        url: 'https://ransa-reclamo.com/datanotificationdissatisfactions',
         type: 'POST',
     },
     language: {
@@ -16,6 +16,10 @@ $('#table_notification_dissatisfactions').DataTable({
         data: 'id',
         name: 'notification_services.id'
     },
+    {
+        data: 'warehouse.name',
+        name: 'warehouse.name'
+      },
     {
         data: 'dissatisfaction_service.notification_type',
         name: 'dissatisfaction_service.notification_type'
@@ -51,12 +55,12 @@ $('#table_notification_dissatisfactions').DataTable({
 
 $('#table_notification_dissatisfactions tbody').on("click", ".images", function () {
     var dataimages = $(this).attr("data-bs-whatever");
-    var jsonimage = jQuery.parseJSON(dataimages);
+    var jsonimage = JSON.parse(dataimages);
     var images = '';
     var allowedExtensions = /(.jpg|.jpeg|.png)$/i;
     $.each(jsonimage, function (index, value) {
         if (allowedExtensions.exec(value.name)) {
-            images += '<img class="rounded img-thumbnail" width="200" src="' + value.path + '" alt="">';
+            images += '<img class="rounded img-thumbnail" width="200" src="img/' + value.name + '" alt="">';
         }
     });
     $(".imagesc").html(images);
@@ -71,7 +75,7 @@ $('#table_dissatisfaction_services').DataTable({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: 'http://127.0.0.1:8000/dataservicios_insatisfaccion',
+        url: 'https://ransa-reclamo.com/dataservicios_insatisfaccion',
         type: 'POST',
     },
     language: {

@@ -1,7 +1,7 @@
 <footer>
     <div class="float-end">
         <!-- developed by Douglas Borbor -->
-        Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+        Derechos Reservado por Ransa &copy; 2023
     </div>
     <div class="clearfix"></div>
 </footer>

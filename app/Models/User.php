@@ -64,4 +64,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(Notification_service::class);
     }
+    
+   // Aqui se manda a llamar al empleado model para que traiga el id asociado con el Almacen.
+
+    public function warehouse()
+    {
+     return Employee::where('id', $this->userable_id)->first()->warehouse_id;
+    }
+
+    // Esta relacion nos ayuda a filtrar los empleador por cargo con la relacion de polimorfa que tiene con la tabla de users.
+    public function Employee()
+    {
+        return $this->belongsTo(Employee::class, 'userable_id', 'id');
+    }
 }

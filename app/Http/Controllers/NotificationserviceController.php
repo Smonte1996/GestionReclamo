@@ -91,7 +91,7 @@ class NotificationserviceController extends Controller
                 if ($image->extension() == 'xlsx' || $image->extension() == 'xls') {
                     $url = $image->store('notification_service/analisis/');   
                 }else{
-                    $url = $image->store('notification_service');
+                    $url = $image->store('notification_service/');
                 }
                 $notification_service->attached_files()->create([
                     'name' => $image->hashName(),
@@ -129,14 +129,17 @@ class NotificationserviceController extends Controller
     {
         return (new NotificationservicesExport($request->date_inicial, $request->date_final))->download('Notificaciones.xlsx');
     }
-
+    //Donde se manda ah llamar la tabla de lista de novedades.
     public function getData()
     {
         $notification_services = Notification_service::with('client')
             ->with('user')
             ->with('employee')
+            ->with('warehouse')
             ->with('dissatisfaction_service')
             ->select('notification_services.*');
+            // se aplica un where para que se pueda filtrar las notificaciones por Almacen.
+          // ->where('warehouse_id', Auth::user()->warehouse());
         return DataTables::eloquent($notification_services)
             ->addColumn('estados', function ($notification_service) {
                 if (!empty($notification_service->date_check)) {

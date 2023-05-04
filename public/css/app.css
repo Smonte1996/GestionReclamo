@@ -7361,6 +7361,60 @@ textarea.form-control-lg {
   background-color: #009A3F;
   border-color: #28c267;
 }
+
+.form-checks {
+  display: block;
+  min-height: 1.5rem;
+  padding-left: 1.5em;
+  margin-bottom: 0.125rem;
+}
+.form-checks .form-checks-input {
+  float: left;
+  margin-left: -1.5em;
+}
+
+.form-checks-input {
+  width: 1em;
+  height: 1em;
+  margin-top: 0.3em;
+  vertical-align: top;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  -webkit-print-color-adjust: exact;
+          color-adjust: exact;
+}
+.form-checks-input[type=checkbox] {
+  border-radius: 0.25em;
+}
+.form-checks-input[type=radio] {
+  border-radius: 50%;
+}
+.form-checks-input:active {
+  filter: brightness(90%);
+}
+.form-checks-input:focus {
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+.form-checks-input:checked {
+  background-color: #f75127;
+  border-color: #f75127;
+}
+.form-checks-input:checked[type=checkbox] {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
+}
+.form-checks-input:checked[type=radio] {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+
 .form-check-input:checked[type=checkbox] {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
 }
@@ -14912,6 +14966,10 @@ textarea.form-control-lg {
 
 .text-green-500 {
   color: #009A3F !important;
+} 
+
+.text-red-500{
+  color: #d33333 !important;
 }
 
 .text-green-600 {

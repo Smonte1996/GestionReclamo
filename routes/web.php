@@ -8,14 +8,26 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\Detalle_causalController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\Causal_generalController;
 use App\Http\Controllers\Dissatisfaction_serviceController;
 use App\Http\Controllers\NotificationserviceController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PositionController;
 use App\Http\Livewire\Guest\DissatisfiedServices;
+use App\Http\Livewire\Guest\EncuentaCliente;
+use App\Http\Livewire\Guest\ReclamoCliente;
+use App\Http\Livewire\Reclamo\Clasificaciones;
+use App\Http\Livewire\Reclamo\Investigaciones;
+use App\Http\Livewire\Reclamo\Confirmaracciones;
+use App\Http\Livewire\Reclamo\InvestigacionNoProcede;
+use App\Http\Livewire\Reclamo\InfnoProcede;
+use App\Http\Livewire\Reclamo\Solicitudes;
+use App\Http\Livewire\Reclamo\InfoAcciones;
+use App\Http\Livewire\Reclamo\Correcciones;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +47,8 @@ Route::get('/', function () {
 
 // Ruta de Visitantes
 Route::get('servicio', DissatisfiedServices::class);
+Route::get('Reclamo', ReclamoCliente::class)->name('reclamo.visita');
+Route::get('Encuesta/cliente/{solicitude}', EncuentaCliente::class)->name('encuesta.cliente');
 
 
 // Rutas para usuarios administrador
@@ -73,6 +87,23 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::resource('ciudades', CityController::class)->except(['show'])->parameters(['ciudades' => 'city'])->names('cities');
         Route::post('datacountries', [CountryController::class, 'getData'])->name('data');
         Route::resource('paises', CountryController::class)->except(['show'])->parameters(['paises' => 'country'])->names('countries');
+        Route::resource('General/causal', Causal_generalController::class)->except(['show'])->parameters(['Causal_general' => 'causal_generals'])->names('General');
+        Route::resource('Detalles', Detalle_causalController::class)->except(['show'])->parameters(['Detalle_casual' => 'detalle_causals'])->names('Detalle');
+
+        Route::get('/Solicitudes', Solicitudes::class)->name('reclamo');
+        Route::get('download/{id}', [Solicitudes::class, 'download'])->name('download.Archivo');
+        Route::get('/Clasificaciones/{solicitude}', Clasificaciones::class)->name('Clasificacion');
+        Route::get('/Investigacion/{solicitud}', Investigaciones::class)->name('Investigador');
+        Route::get('/Investigacion/{clasificacion}/Noprocede', InvestigacionNoProcede::class)->name('Investigacion.noProcede');
+        Route::get('/editar/reclamo/{solicitude}', Confirmaracciones::class)->name('confirmar.acciones');
+        Route::get('/inf/reclamos/{solicitude}', InfoAcciones::class)->name('Infor.reclamo');
+        Route::get('/solicitud/Info/no-procede/{solicitude}', InfnoProcede::class)->name('inf.no-procede');
+        Route::get('/Investigacion/{solicitud}/Correccion', Correcciones::class)->name('Investigacion.correccion');
+
+        Route::get('img/{name}', function ($name) {
+            $path = storage_path("app/notification_service/{$name}");
+            return response()->file($path);
+        });
     });
 
     // Rutas para Usuarios que no son administradores

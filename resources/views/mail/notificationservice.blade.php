@@ -1,26 +1,28 @@
 <style>
     .color-lead {
-        color: #9D9D9C;
+        color: rgb(0, 0, 0);
     }
 
     .color-orange {
-        color: #F39200;
+        color: #F29104;
     }
 
     .color-green {
-        color: #009A3F;
+        color: #009B3A;
     }
 
     .titulo {
-        font-size: 25px;
+        font-size: 12px;
         font-weight: bold;
         text-align: center;
         margin-bottom: 10px;
+        font: verdana;
     }
 
     .cuerpo {
-        font-size: 13px;
+        font-size: 11px;
         font-weight: bold;
+        font: verdana;
     }
 
     .me {
@@ -31,18 +33,33 @@
         margin-bottom: 5px;
     }
 
+    .mt
+    {
+        margin-top: 5px;
+    }
+
     .ms {
         margin-left: 5px;
+    }
+    .text-titulo
+    {
+        text-transform: lowercase;
     }
 </style>
 
 
 @component('mail::message')
+
 <table width="100%">
-<tr class="color-green titulo">
-<td>¡ Notificación de {{ $notification->dissatisfaction_service->notification_type }} !</td>
+<table width="100%">
+<tr>
+ <td align="right"><img width="100" src="{{ asset('img/logo-ransa.png') }}"></td>
 </tr>
-<table class="cuerpo" width="100%">
+</table>
+<tr class="color-green titulo mb">
+<td>Comunicado de <span class="text-titulo">{{ $notification->dissatisfaction_service->notification_type }} </span></td>
+</tr>
+<table class="cuerpo mt" width="100%">
 <tr>
 <td class="color-lead">
 Estimados,
@@ -50,39 +67,42 @@ Estimados,
 </tr>
 <tr>
 <td class="color-lead">
-EL presente es para informar que se ha reportado una alerta,
+Queremos informarte del siguiente hallazgo registrado como servicio no conforme.
 </td>
 </tr>
+
 <tr>
-<td class="color-lead">
-la cualse debe cumplir las acciones dentro de las 24 horas.
-</td>
-</tr>
+<table width="100%" class="cuerpo mt">
 <tr>
-<table width="100%" class="cuerpo">
-<tr>
-<td class="color-lead me">Reportado por:</td>
-<td class="color-orange me">
-{{ $notification->employee->name . ' ' . $notification->employee->lastname }}</td>
-<td class="color-lead me">Imágenes</td>
-<td class="color-orange me">{{ count($notification->attached_files) }}</td>
-</tr>
-<tr>
-<td class="color-lead me">Actividad:</td>
-<td class="color-orange me">{{ $notification->dissatisfaction_service->activity->name }}</td>
+<td class="color-lead me">Proceso:</td>
+<td class="color-lead me">{{ $notification->dissatisfaction_service->activity->name }}</td>
 </tr>
 <tr>
 <td class="color-lead me">Potencial Servicio No Conforme:</td>
-<td class="color-orange me">{{ $notification->dissatisfaction_service->name }}</td>
+<td class="color-lead me">{{ $notification->dissatisfaction_service->name }}</td>
+</tr>
+<tr>
+<td class="color-lead me">Almacen:</td>
+<td class="color-lead me">{{ $notification->warehouse->name }}</td>
+</tr>
+<tr>
+<td class="color-lead me">Cliente:</td>
+<td class="color-lead me">{{ $notification->client->social_reason }}</td>
 </tr>
 <tr>
 <td class="color-lead me">Observaciones:</td>
-<td class="color-orange me">{{ $notification->observations }}</td>
+<td class="color-lead me">{{ $notification->observations }}</td>
+</tr>
+<tr>
+<td class="color-lead me">Reportado por:</td>
+<td class="color-lead me">
+{{ $notification->employee->name . ' ' . $notification->employee->lastname }}</td>
 </tr>
 </table>
-<table width="100%" class="cuerpo" cellpadding="0" cellspacing="0">
+<br>
+<table width="100%" class="cuerpo mt" cellpadding="0" cellspacing="0">
 <tr>
-<td class="titulo color-green mb">Acciones por Cumplir</td>
+<td class="color-orange me">Acciones por Cumplir</td>
 </tr>
 <tr>
 <td>
@@ -94,21 +114,22 @@ la cualse debe cumplir las acciones dentro de las 24 horas.
 </td>
 </tr>
 <tr>
-<td class="color-green cuerpo mb ms">
-Para confirmar las acciones cumplidas y ver a detalle la notificación por favor
-ingrese al siguiente link:
+<td class="color-lead cuerpo mt">
+Por favor, registre el cumplimiento de las acciones dentro de las 72 horas siguientes,
+utilizando este botón de acceso:
 </td>
 </tr>
+<br>
 <tr>
 @component('mail::button', ['url' => route('notifications.edit', ['notification_service' => $notification]), 'color' => 'green'])
-Realizar Acciones
+Cumplimiento de acciones
 @endcomponent
 </tr>
 <tr>
 <td>
 <table>
 <tr>
-<td align="left"><img src="{{ asset('img/Llave_Somos-un-solo-equipo_verde.png') }}" width="200" alt=""></td>
+<!-- <td align="left"><img src="{{ asset('img/Llave_Somos-un-solo-equipo_verde.png') }}" width="200" alt=""></td> -->
 {{-- <td></td> --}}
 {{-- <td align="rigth"><img width="200" src="{{ asset('img/logo-ransa.png') }}"></td> --}}
 </tr>

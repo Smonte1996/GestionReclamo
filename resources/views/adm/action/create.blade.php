@@ -38,7 +38,7 @@
                                 @csrf
                                 <div class="row">
                                     <div class="mb-4 col-sm-12 col-md-4">
-                                        <label for="" class="form-label fs-6 text-lead-500">Nuevo Pais</label>
+                                        <label for="" class="form-label fs-6 text-lead-500">Nuevo Acciones</label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
                                             name="name" id="name" aria-describedby="namehelpId"
                                             placeholder="Nuevo Accion" value="{{ old('name') }}">
