@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-
+ 
             <div id="cuadroItem" class="cuadroItem">
                 <div class="x_panel">
                     <div class="x_content">
@@ -132,9 +132,9 @@
                             @case(3)
                             <div class="btn-group btn-group-sm " role="group" aria-label="">
                                
-                                <a href="{{route('adm.download.Archivo', $solicitud->id)}}" rel="noreferrer noopener" class="border btn btn-orange-500 text-white"
+                                <a href="{{route('adm.Reclamo.pdf', $solicitud->id)}}" target="_blank" rel="noreferrer noopener" class="border btn btn-orange-500 text-white"
                                     >
-                                    <i class="fa fa-download"></i>
+                                    <i class="fa-solid fa-file-pdf"></i>
                                 </a>
                                 <a href="{{ route('adm.Infor.reclamo', $solicitud->id) }}" class="btn btn-orange-500 text-white border" >
                                     <i class="fa fa-info"></i>
@@ -145,9 +145,9 @@
                             @case(4)
                             <div class="btn-group btn-group-sm " role="group" aria-label="">
                               
-                                <a href="{{route('adm.download.Archivo', $solicitud->id)}}" rel="noreferrer noopener" class="border btn btn-orange-500 text-white"
+                                <a href="{{route('adm.Reclamo.pdf', $solicitud->id)}}" target="_blank" rel="noreferrer noopener" class="border btn btn-orange-500 text-white"
                                     >
-                                    <i class="fa fa-download"></i>
+                                    <i class="fa-solid fa-file-pdf"></i>
                                 </a>
                                 <a href="{{ route('adm.Infor.reclamo', $solicitud->id) }}" class="btn btn-orange-500 text-white border" >
                                     <i class="fa fa-info"></i>
@@ -157,12 +157,6 @@
                              
                             @case(5)
                             <div class="btn-group btn-group-sm " role="group" aria-label="">
-                                <!-- @isset($solicitud->investigacion->argumento)
-                                <a href="{{asset('storage/Reclamos/Analisis/'.trim($solicitud->investigacion->archivo))}}" target="_blank" rel="noreferrer noopener" class="border btn btn-orange-500 text-white"
-                                    >
-                                    <i class="fa fa-download"></i>
-                                </a>
-                                @endisset  -->
                                 <a href="{{route('adm.inf.no-procede', $solicitud->id)}}" class="btn btn-orange-500 text-white border" >
                                     <i class="fa fa-info"></i>
                                 </a>

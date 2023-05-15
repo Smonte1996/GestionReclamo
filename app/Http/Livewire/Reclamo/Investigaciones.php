@@ -8,6 +8,8 @@ use App\Mail\notificacionresponsableacciones;
 use App\Models\User;
 use App\Models\Accion;
 use Livewire\Component;
+use App\Models\Analisis_efecto;
+use App\Models\Causa_ishikawa;
 use App\Models\Solicitude;
 use App\Models\Clasificacion;
 use App\Models\Investigacion;
@@ -20,6 +22,22 @@ class Investigaciones extends Component
     // Este metodo sirve para guardar las images y crear la carpetas en la ruta definida.
     use WithFileUploads;
 
+    public $campo =[
+        [
+          'categoria' => '',
+          'causa' => '',
+        ]
+      ];
+
+      public $campos =[ 
+        [
+            'porqueone' => '',
+            'porquetwo' => '',
+            'porquethree' => '',
+            'porquefour' => '',
+            'porquefive' => '',
+         ]
+    ];
 
     public $inputs =[
         [
@@ -55,19 +73,19 @@ class Investigaciones extends Component
  // Aqui donde se una consulta y se montrara un sola vez y se valida si el id ya se lleno para que no haiga duplicado.
     public function mount($solicitud)
     {   
-            $Investigacion = Solicitude::find($solicitud);
-        if (!empty($Investigacion->investigacion->solicitude_id)) {
-            abort(401);
-        } else {
+              $Investigacion = Solicitude::find($solicitud);
+          if (!empty($Investigacion->investigacion->solicitude_id)) {
+              abort(401);
+         } else {
         $this->users = User::with('Employee')->whereHas('Employee', function($query){
             $query->WhereIn('position_id', [5,14,15,16,17,18]);  
          })->get(); //Una consulta a la tabla de users y se asocia con el employee para hacer el filtro por cargo.
         $this->supervisores = User::with('Employee')->whereHas('Employee', function($query){
-            $query->WhereIn('position_id', [4, 9, 19]);  
+            $query->WhereIn('position_id', [4, 9]);  
          })->get(); //Una consulta a la tabla de users y se asocia con el employee para hacer el filtro por cargo.
         $this->clasificacion = $solicitud;
         $this->solicitude = Solicitude::find($solicitud);
-        }
+          }
     }
     // para agregar campos para los planes acciones.
     public function addField()
@@ -85,6 +103,40 @@ class Investigaciones extends Component
     public function removeField($index)
     {
         unset($this->inputs[$index]);
+        
+    }
+
+    // para agregar campos para los analsis ishikawa.
+    public function Añadircampos()
+    {
+        $this->campo[] =
+        [
+            'categoria' => '',
+            'causa' => '',
+        ];
+    }
+   //Es para remover los campos agregado.
+    public function Deshasercampo($inicio)
+    {
+        unset($this->campo[$inicio]);
+    }
+
+     // para agregar campos para los analsis del 5 porques.
+    public function agregarcampos()
+    {
+        $this->campos[] = 
+        [
+            'porqueone' => '',
+            'porquetwo' => '',
+            'porquethree' => '',
+            'porquefour' => '',
+            'porquefive' => '',
+        ];
+    }
+    //Es para remover los campos agregado.
+    public function QuitarCampos($indexs)
+    {
+        unset($this->campos[$indexs]);
         
     }
 
@@ -111,6 +163,7 @@ class Investigaciones extends Component
          'archivo' => $datos['archivo'],
          'codigo_generado' => $this->solicitude->codigo_generado,
         ]);
+
           foreach ($this->inputs as $input) { 
          $notificacionAcciones = Accion::create([
           'solicitude_id' => $this->clasificacion,
@@ -119,6 +172,26 @@ class Investigaciones extends Component
           'fecha_programacion' => $input['fecha_programada'],
          ]);
          }
+
+         foreach ($this->campos as $campo) {
+            $guardarefecto = Analisis_efecto::create([
+             'solicitude_id' => $this->clasificacion,
+             'porque1' => $campo['porqueone'],
+             'porque2' => $campo['porquetwo'],
+             'porque3' => $campo['porquethree'],
+             'porque4' => $campo['porquefour'],
+             'porque5' => $campo['porquefive'],
+            ]);
+          }
+
+          foreach ($this->campo as $camp) {
+            $guardarcausa = Causa_ishikawa::create([
+                'solicitude_id' => $this->clasificacion,
+                'categoria' => $camp['categoria'],
+                'causa' => $camp['causa'],
+               ]);
+         }
+
          $affected = DB::table('solicitudes')
          ->where('id', $this->clasificacion)
          ->update(['estado' => 3]);

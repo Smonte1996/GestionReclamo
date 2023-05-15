@@ -23,7 +23,6 @@
                     <div class="col-md-12 col-sm-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>Clasificaciones</h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                 <li>
                                         <x-jet-button type="button" data-bs-toggle="modal"
@@ -34,13 +33,16 @@
                             <div class="clearfix"></div>  
                             </div>
                             <div class="x_content">
-                                <div class="row">
+                                <fieldset class="border border-2 mb-3">
+                                    <legend class="rounded w-50 d-none d-sm-block float-none bg-green-500 text-white ps-5 ms-4">Información general</legend>
+                                    <legend class="rounded float-none d-sm-none bg-green-500 text-white fs-6 p-1">Información general</legend>
+                                <div class="row m-0">
                                     <div class="col-sm-12 col-md-3">
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput1"
-                                                class="form-label text-lead-500">N° de ticket
+                                                class="form-label text-lead-900">N° de ticket
                                             </label>
-                                            <div class="text-orange-500 fw-bold fs-6">
+                                        <div class="text-lead-500 fw-bold fs-6">
                                                 {{$solicitude->codigo_generado}}
                                             </div>
                                         </div>
@@ -48,8 +50,8 @@
                                     <div class="col-sm-12 col-md-3">
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput1"
-                                                class="form-label text-lead-500">Sede</label>
-                                            <div class="text-orange-500 fs-6">
+                                                class="form-label text-lead-900">Sede</label>
+                                            <div class="text-lead-500 fs-6">
                                                 {{$solicitude->sede->name}}
                                             </div>
                                         </div>
@@ -57,8 +59,8 @@
                                     <div class="col-sm-12 col-md-3">
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput1"
-                                                class="form-label text-lead-500">Tipo</label>
-                                            <div class="text-orange-500 fw-bold fs-6">
+                                                class="form-label text-lead-900">Tipo</label>
+                                            <div class="text-lead-500 fw-bold fs-6">
                                                 {{$solicitude->tipo_reclamo->name}}
                                             </div>
                                         </div>
@@ -66,8 +68,8 @@
                                     <div class="col-sm-12 col-md-3">
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput1"
-                                                class="form-label text-lead-500">Cliente</label>
-                                            <div class="text-orange-500 fw-bold fs-6">
+                                                class="form-label text-lead-900">Cliente</label>
+                                            <div class="text-lead-500 fw-bold fs-6">
                                                 {{$solicitude->cliente}}
                                         </div>
                                     </div>
@@ -75,8 +77,8 @@
                                 <div class="col-sm-6 col-md-4">
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1"
-                                            class="form-label text-lead-500">Servicio Contratado</label>
-                                        <div class="text-orange-500 fs-6">
+                                            class="form-label text-lead-900">Servicio Contratado</label>
+                                        <div class="text-lead-500 fs-6">
                                             {{$solicitude->servicio_ransa->name}}
                                         </div>
                                     </div>
@@ -84,8 +86,8 @@
                                 <div class="col-sm-6 col-md-4">
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1"
-                                            class="form-label text-lead-500">Sub servicio</label>
-                                        <div class="text-orange-500 fs-6">
+                                            class="form-label text-lead-900">Sub servicio</label>
+                                        <div class="text-lead-500 fs-6">
                                             {{$solicitude->adicional->name}}
                                         </div>
                                     </div>
@@ -93,8 +95,8 @@
                                 <div class="col-sm-6 col-md-4">
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1"
-                                            class="form-label text-lead-500">Titulo</label>
-                                        <div class="text-orange-500 fw-bold fs-6">
+                                            class="form-label text-lead-900">Titulo</label>
+                                        <div class="text-lead-500 fw-bold fs-6">
                                             {{$solicitude->titulo}}
                                     </div>
                                 </div>
@@ -102,15 +104,15 @@
                                     <div class="col-sm-12 col-md-6">
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput1"
-                                                class="form-label text-lead-500">Descripcion</label>
-                                            <div class="text-orange-500 fs-6">
+                                                class="form-label text-lead-900">Descripcion</label>
+                                            <div class="text-lead-500 fs-6">
                                                 {{$solicitude->Descripcion}}
                                             </div>
                                         </div>
                                     </div>
                                    
                              </div>
-                           
+                            </fieldset>
                                 <fieldset class="border border-2">
                                     <legend class="rounded w-50 d-none d-sm-block float-none bg-lead-500 text-white ps-5 ms-4">Asignar Responsable</legend>
                                         <legend class="rounded float-none d-sm-none bg-lead-500 text-white fs-6 p-1">Asignar Responsable</legend>                                        

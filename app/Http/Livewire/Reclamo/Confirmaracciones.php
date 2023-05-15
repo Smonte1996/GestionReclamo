@@ -31,12 +31,12 @@ class Confirmaracciones extends Component
     // Aqui donde se una consulta y se montrara un sola vez y se valida si el id ya se lleno para que no haiga duplicado.
     public function mount($solicitude)
     {
-         $solicitud = Solicitude::find($solicitude);
-      if (!empty($solicitud->investigacion->date_check)) {
-        abort(401);
-    } else {
+          $solicitud = Solicitude::find($solicitude);
+       if (!empty($solicitud->investigacion->date_check)) {
+         abort(401);
+     } else {
         $this->solicitude = Solicitude::find($solicitude);
-       }
+        }
     }
 
     //Esta es la funcion para registar del cierre de acciones hace la validacion se define la ruta de la imagen en donde va ser guardada despues de guardar se envia el correo al cliente del cierre de caso.

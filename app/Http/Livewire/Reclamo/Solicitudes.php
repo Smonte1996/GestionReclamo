@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Reclamo;
 
 use Livewire\Component;
 use App\Models\Solicitude;
+use PDF;
 
 class Solicitudes extends Component
 {   
@@ -13,17 +14,14 @@ class Solicitudes extends Component
         $solicitudes = Solicitude::all();
         return view('livewire.reclamo.solicitudes', compact('solicitudes'));
     }
-    
-    public function download($id)
-     {
-         $registro = Solicitude::find($id);
-         
-             if (!$registro->investigacion->archivo) {
-                  return;
-              }
-                 $archivo = $registro->investigacion->archivo;
 
-            return response()->download(storage_path('app/public/Reclamos/Analisis/'.trim($archivo)));
+    public function ReclamoPdf($id)
+    {
+        $Solicitudes = Solicitude::find($id);
+        
+        $pdfs = PDF::loadView('pdf.informe_pdf', compact('Solicitudes'));
+        
+        return $pdfs->stream("$Solicitudes->codigo_generado.pdf");
     }
 
 }

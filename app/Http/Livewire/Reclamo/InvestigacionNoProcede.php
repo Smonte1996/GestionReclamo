@@ -31,12 +31,12 @@ class InvestigacionNoProcede extends Component
 
     public function mount($clasificacion)
     {
-        $Investigacion = Solicitude::find($clasificacion);
-        if (!empty($Investigacion->investigacion->solicitude_id)) {
-            abort(401);
-        } else {
+         $Investigacion = Solicitude::find($clasificacion);
+         if (!empty($Investigacion->investigacion->solicitude_id)) {
+             abort(401);
+         } else {
         $this->solicitude = Solicitude::find($clasificacion);
-        }
+         }
     }
 
     public function Registarargumento()

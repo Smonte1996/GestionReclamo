@@ -87,4 +87,16 @@ class Solicitude extends Model
      {
         return $this->hasMany(Evidencia_solicitude::class, 'solicitude_id');
      }
+
+     // se define la relcion con la tabla de Analisis de efectos de 5 porques.
+     public function Analisis()
+     {
+        return $this->hasMany(Analisis_efecto:: class, 'solicitude_id');
+     }
+     
+     // se define la relacion con la tabla de ishikawa.
+     public function ishikawa()
+     {
+        return $this->hasMany(Causa_ishikawa::class, 'solicitude_id');
+     }
 }

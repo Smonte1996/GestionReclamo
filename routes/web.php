@@ -60,7 +60,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         })->name('dashboard');
         Route::post('dataacciones', [ActionController::class, 'getData'])->name('data');
         Route::resource('acciones', ActionController::class)->except(['show'])->parameters(['acciones' => 'action'])->names('actions');
-        Route::post('dataservicios_insatisfaccion', [Dissatisfaction_serviceController::class, 'getData'])->name('data');
+        Route::post('dataservicios_insatisfaccions', [Dissatisfaction_serviceController::class, 'getData'])->name('data');
         Route::resource('listado-servicios', Dissatisfaction_serviceController::class)->except(['show'])->parameters(['listado-servicios' => 'dissatisfaction_service'])->names('dissatisfaction_services');
         Route::post('dataposiciones', [PositionController::class, 'getData'])->name('data');
         Route::resource('posiciones', PositionController::class)->except(['show'])->parameters(['posiciones' => 'position'])->names('positions');
@@ -91,11 +91,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::resource('Detalles', Detalle_causalController::class)->except(['show'])->parameters(['Detalle_casual' => 'detalle_causals'])->names('Detalle');
 
         Route::get('/Solicitudes', Solicitudes::class)->name('reclamo');
-        Route::get('download/{id}', [Solicitudes::class, 'download'])->name('download.Archivo');
+        Route::get('Reclamo-pdf/{id}',[Solicitudes::class, 'ReclamoPdf'])->name('Reclamo.pdf');
         Route::get('/Clasificaciones/{solicitude}', Clasificaciones::class)->name('Clasificacion');
         Route::get('/Investigacion/{solicitud}', Investigaciones::class)->name('Investigador');
         Route::get('/Investigacion/{clasificacion}/Noprocede', InvestigacionNoProcede::class)->name('Investigacion.noProcede');
-        Route::get('/editar/reclamo/{solicitude}', Confirmaracciones::class)->name('confirmar.acciones');
+        Route::get('/editar-reclamo/{solicitude}', Confirmaracciones::class)->name('confirmar.acciones');
         Route::get('/inf/reclamos/{solicitude}', InfoAcciones::class)->name('Infor.reclamo');
         Route::get('/solicitud/Info/no-procede/{solicitude}', InfnoProcede::class)->name('inf.no-procede');
         Route::get('/Investigacion/{solicitud}/Correccion', Correcciones::class)->name('Investigacion.correccion');

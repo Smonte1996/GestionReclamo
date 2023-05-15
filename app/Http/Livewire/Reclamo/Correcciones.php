@@ -28,12 +28,12 @@ class Correcciones extends Component
 
     public function mount($solicitud)
     {
-        $Investigacion = Solicitude::find($solicitud);
-        if (!empty($Investigacion->investigacion->solicitude_id)) {
-            abort(401);
-        } else {
+         $Investigacion = Solicitude::find($solicitud);
+         if (!empty($Investigacion->investigacion->solicitude_id)) {
+             abort(401);
+         } else {
         $this->solicitude = Solicitude::find($solicitud);
-        }
+         }
     }
 
     public function RegistarCorrecion()

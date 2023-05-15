@@ -15,9 +15,9 @@ try {
     const bootstrap = require('bootstrap')
 
     window.bootstrap = bootstrap;
-       
-    
-    
+    // window.datatables = require('datatables.net-bs');
+
+
     // require('jquery-ui/ui/widgets/autocomplete');
     // require('bootstrap-sass');
     // require('datatables.net-bs5')(window, $);
@@ -25,14 +25,14 @@ try {
     require('pdfmake');
     require( 'datatables.net-responsive-bs5' )();
     require('datatables.net-bs5')();
-    
+
     // require('datatables.net-responsive-bs5' )(window, $);
     // require('datatables.net-responsive-bs5')();
-    
+
     require('datatables.net-buttons-bs5')(window, $);
     // require('datatables.net-buttons/js/buttons.html5.js')(window, $);
     // require('datatables.net-staterestore-bs5')(window, $);
-    // require('datatables.net-bs')(window, $);
+     require('datatables.net-bs')(window, $);
     // require('datatables.net-autofill')(window, $);
     // require('datatables.net-autofill-bs')(window, $);
     // require('datatables.net-buttons')(window, $);
