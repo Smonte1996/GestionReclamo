@@ -33,24 +33,24 @@
                             </div>
                             <div class="d-grid gap-1">
                                 <div class="">
-                                    <label class="form-label text-lead-500 ">Fecha de Creación:</label>
-                                    <p class="form-control text-orange-500">{{ $notification_service->created_at }}
+                                    <label class="form-label text-lead-900 ">Fecha de Creación:</label>
+                                    <p class="form-control text-lead-500">{{ $notification_service->created_at }}
                                     </p>
                                 </div>
                                 <div class="">
-                                    <label class="form-label text-lead-500 ">Potencial Servicio No Conforme:</label>
-                                    <p class="form-control text-orange-500">
+                                    <label class="form-label text-lead-900 ">Potencial Servicio No Conforme:</label>
+                                    <p class="form-control text-lead-500">
                                         {{ $notification_service->dissatisfaction_service->name }}</p>
                                 </div>
                                 <div class="">
-                                    <label class="form-label text-lead-500 ">Observacion Inicial:</label>
-                                    <p class="form-control text-orange-500">{{ $notification_service->observations }}
+                                    <label class="form-label text-lead-900 ">Observacion Inicial:</label>
+                                    <p class="form-control text-lead-500">{{ $notification_service->observations }}
                                     </p>
                                 </div>
                                 <div class="">
-                                    <label class="form-label text-lead-500 ">Acciones:</label>
+                                    <label class="form-label text-lead-900 ">Acciones:</label>
                                     <div class="form-control ">
-                                        <ul class="text-orange-500">
+                                        <ul class="text-lead-500">
 
                                         
                                         @foreach ($notification_service->dissatisfaction_service->actions as $action)
@@ -62,19 +62,19 @@
                                 </div>
                                 @isset($notification_service->user->name)
                                     <div class="">
-                                        <label class="form-label text-lead-500 ">Usuario quien da la respuesta:</label>
-                                        <p class="form-control text-orange-500">{{ $notification_service->user->name }}
+                                        <label class="form-label text-lead-900 ">Usuario quien da la respuesta:</label>
+                                        <p class="form-control text-lead-500">{{ $notification_service->user->name }}
                                         </p>
                                     </div>
 
                                     <div class="">
-                                        <label class="form-label text-lead-500 ">Fecha de Respuesta:</label>
-                                        <p class="form-control text-orange-500">
+                                        <label class="form-label text-lead-900 ">Fecha de Respuesta:</label>
+                                        <p class="form-control text-lead-500">
                                             {{ date('Y-m-d H:i:s', strtotime($notification_service->date_check)) }}</p>
                                     </div>
                                     <div class="">
-                                        <label class="form-label text-lead-500 ">Observaciones Finales:</label>
-                                        <p class="form-control text-orange-500">
+                                        <label class="form-label text-lead-900 ">Observaciones Finales:</label>
+                                        <p class="form-control text-lead-500">
                                             {{ $notification_service->end_observations }}</p>
                                     </div>
                                 @endisset

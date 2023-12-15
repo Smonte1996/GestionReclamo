@@ -24,9 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-     
-      \URL::forceScheme('https');
-      
+        
+    // if (App::environment('production', 'development'))
+    //     { 
+         \URL::forceScheme('https');
+        // }
             Route::resourceVerbs([
                 'create' => 'crear',
                 'edit' => 'editar',

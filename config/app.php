@@ -55,7 +55,7 @@ return [
     */
 
     'url' => env('APP_URL', 'https://ransa-reclamo.com'),
-
+ 
     'asset_url' => env('ASSET_URL'),
 
     /*

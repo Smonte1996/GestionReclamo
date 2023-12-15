@@ -69,9 +69,26 @@
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput1"
                                                 class="form-label text-lead-900">Cliente</label>
-                                            <div class="text-lead-500 fw-bold fs-6">
-                                                {{$solicitude->cliente}}
+                                        @if ($mostrarSelect)
+                                        <div style="width: 130px">
+                                            <select class="form-control rounded Selector" wire:model='clientes'>
+                                               <option value="">selecionar</option>
+                                               @foreach ($Cliente as $client)
+                                                   <option value="{{$client->Nombre_bi}}">{{$client->Nombre_bi}}</option>
+                                               @endforeach
+                                            </select>
+                                            <button class="btn btn-primary" style="font-size: 10px; width:70px" wire:click.prevent='ActualizacionCliente'>Actualizar</button>
+                                           </div>
+                                        @else
+                                        <div class="text-lead-500 fw-bold fs-6">
+                                            {{$solicitude->cliente}}
+
+                                            <button class="btn btn-dark" style="font-size: 12px" wire:click.prevent="mostrarSelect"><i class="fa-solid fa-pen"></i></button>
                                         </div>
+                                        @endif
+                                            {{-- <div class="text-lead-500 fw-bold fs-6">
+                                                {{$solicitude->cliente}}
+                                        </div> --}}
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-4">
@@ -176,6 +193,16 @@
             </div>
     </div>
   </div>
+  @push('scripts')
+<script>
+    Livewire.on('select2', function() {
+        $('.Selector').on('change', function(e){
+            @this.set('clientes', e.target.value);
+        });
+        $(".Selector").select2();
+       });
+</script>
+@endpush
   {{-- Modal para Visualizar las imagenes --}}
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">

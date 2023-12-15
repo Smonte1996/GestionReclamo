@@ -77,4 +77,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Employee::class, 'userable_id', 'id');
     }
+   
+    // Esta relación es para cuando el cliente se auntetifique lo indentifique con que id esta ingresando y nos permite filtrar con id del cliente
+    public function client()
+    {
+        return Client::where('id', $this->userable_id)->first()->id;
+    }
 }

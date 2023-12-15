@@ -11,7 +11,7 @@
         Déjanos tu reclamo, consulta, sugerencia o felicitación.</P></h1>
     </div>
   </div>
-  <form wire:submit.prevent='RegistarReclamo' class="form-control">
+  <form wire:submit.prevent='RegistarReclamo' class="form-control" enctype="multipart/form-data">
   @csrf
     <div >
       <dt class="text-success">Identificacion del cliente</dt>
@@ -45,7 +45,7 @@
 
       <div class="mb-3">
         <label for="Empresa" class="form-label">Empresa o Razon social a lo que pertenece*</label>
-        <input type="text" class="form-control @error('Empresa') is-invalid @enderror" id="Empresa" wire:model="Empresa" :value="old('Empresa')" >
+        <input type="text" class="form-control @error('Empresa') is-invalid @enderror" id="Empresa" placeholder="No se permite caracteres especiales con (.,-,*,[],())" wire:model="Empresa" :value="old('Empresa')" >
         @error('Empresa')
         <small id="EmpresahelpId" class="form-text text-muted invalid-feedback">{{ $message }}</small>
         @enderror
@@ -78,8 +78,8 @@
       </div>
 
       <div class="mb-3">
-        <label for="servicio" class="form-label">Sub-Servicio afectado*</label>
-        <select class="form-control @error('sub_servicio') is-invalid @enderror" id="servicio" wire:model="sub_servicio" :value="old('sub_servicio')">
+        <label for="servicios" class="form-label">Sub-Servicio afectado*</label>
+        <select class="form-control @error('sub_servicio') is-invalid @enderror" id="servicios" wire:model="sub_servicio" :value="old('sub_servicio')">
             <option>--Seleccionar--</option>
             @if(!is_null($adicionals))
             @foreach ($adicionals as $adicional )
@@ -136,11 +136,14 @@
       </div>    
     @else
       <div class="mb-3">
-        <label for="imagen" class="form-label">Por favor adjuntar evidencia si existe algun soporte de la novedad reportada.</label>
-        <input type="file" class="form-control " wire:model="imagen" accept="image/*">
+        <label for="imagen" class="form-label">Por favor adjuntar evidencia si existe algun soporte de la novedad reportada. ejemplo (.jpeg,.png,.jpg,.svg)</label>
+        <input type="file" class="form-control @error('imagen') is-invalid @enderror" id="imagen" wire:model="imagen" accept=".jpeg,.png,.jpg,.svg">
         </div>
+        @error('imagen')
+        <small id="imagenhelpId" class="form-text text-muted invalid-feedback">{{ $message }}</small>
+        @enderror
     @endif    
-       
+        
         @if ($imagen)
         <div class="card" style="width: 20rem;">
         Preview Imagen:

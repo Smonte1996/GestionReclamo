@@ -112,7 +112,7 @@
                 </div>
                 <div class="col-12 pt-2">
                     <div class="col-12" wire:ignore>
-                        <form class="dropzone" id="my-awesome-dropzone" method="GET">
+                        <form class="dropzone" id="my-awesome-dropzone" method="GET" enctype="multipart/form-data">
                         </form>
                     </div>
                 </div>
@@ -163,11 +163,11 @@
             </div>
         </fieldset>
     </div>  
-    <div class="pt-3 float-sm-end">
+    {{-- <div class="pt-3 float-sm-end">
         <img src="{{ asset('img/Llave_Vivimos-seguros_naranja.png') }}" class="imagepg" alt="">
-    </div>
+    </div> --}}
 </div>
-
+@push('scripts')
 <script>
     document.addEventListener('livewire:load', function() {
         var arrayFiles = [];
@@ -198,11 +198,10 @@
 
                     @this.images = arrayFiles;
 
-
-
                 })
 
             }
         });
     })
 </script>
+@endpush

@@ -39,7 +39,7 @@ class InfnoProcede extends Component
        ->update(['estado' => 2]);
 
        Mail::to([$this->solicitude->clasificacion->users->email,'smontenegrot@ransa.net'])->send(New notificacionReaperturaResponsable($this->solicitude));
-       Mail::to([$this->solicitude->correo ,"EGananR@ransa.net", "WFuentesB@ransa.net", "smontenegrot@ransa.net"])->send(new notificacionReapertura($this->solicitude));
+       Mail::to([$this->solicitude->correo ,"EGananR@ransa.net", "smontenegrot@ransa.net"])->send(new notificacionReapertura($this->solicitude));
 
        redirect()->route('adm.reclamo');
     }

@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Exports\NotificationservicesExport;
 use App\Models\Notification_service;
+use App\Mail\NotificacionCierre;
 use Illuminate\Http\Request;
 use DataTables;
 use Excel;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class NotificationserviceController extends Controller
@@ -64,11 +66,11 @@ class NotificationserviceController extends Controller
      */
     public function edit(Notification_service $notification_service)
     {
-        if (!empty($notification_service->date_check)) {
-            abort(401);
-        } else {
+         if (!empty($notification_service->date_check)) {
+             abort(401);
+         } else {
             return view('modulos.dissatisfied_services.checkactions', compact('notification_service'));
-        }
+         }
     }
 
     /**
@@ -80,11 +82,13 @@ class NotificationserviceController extends Controller
      */
     public function update(Request $request, Notification_service $notification_service)
     {
-        $notification_service->update([
-            'user_id' => Auth::user()->id,
-            'date_check' => now(),
-            'end_observations' => $request->endobservations,
-        ]);
+         $notification_service->update([
+              'user_id' => Auth::user()->id,
+              'date_check' => now(),
+              'end_observations' => $request->endobservations,
+         ]);
+
+        Mail::to(["EGananR@ransa.net", "WFuentesB@ransa.net","smontenegrot@ransa.net"])->send(new NotificacionCierre($notification_service));
 
         if ($request->file('file')) {
             foreach ($request->file('file') as $image) {

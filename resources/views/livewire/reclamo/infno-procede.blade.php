@@ -57,6 +57,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @isset($solicitude->clasificacion->causal_general_id)
                                 <div class="col-sm-12 col-md-3">
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1"
@@ -66,6 +67,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endisset
                                 <div class="col-sm-12 col-md-3">
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1"
@@ -92,7 +94,8 @@
                                             {{$solicitude->servicio_ransa->name}} 
                                         </div>
                                     </div>
-                                </div>
+                                </div>          
+                                @isset($solicitude->clasificacion->detalle_causal_id)                      
                                 <div class="col-sm-12 col-md-6">
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1"
@@ -102,6 +105,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endisset
                                 <div class="col-sm-12 col-md-6">
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1"

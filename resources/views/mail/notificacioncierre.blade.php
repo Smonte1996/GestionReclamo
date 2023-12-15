@@ -21,7 +21,7 @@
 
     .cuerpo {
         font-size: 15px;
-        font-weight: bold;
+        /* font-weight: bold; */
         font: verdana;
     }
 

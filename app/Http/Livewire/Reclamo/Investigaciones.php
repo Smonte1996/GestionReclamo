@@ -56,7 +56,7 @@ class Investigaciones extends Component
     public $evaluacion;
     public $Responsable;
     public $fechaprog;
-    public $archivo;
+    // public $archivo;
     public $solicitude;
     public $supervisores;
     
@@ -67,8 +67,6 @@ class Investigaciones extends Component
      'evaluacion' => 'required',
      'Responsable' => 'required',
      'fechaprog' => 'required',
-     'archivo' => 'required|max:3024|mimes:xlsx, xls', 
-
     ];    
  // Aqui donde se una consulta y se montrara un sola vez y se valida si el id ya se lleno para que no haiga duplicado.
     public function mount($solicitud)
@@ -78,16 +76,16 @@ class Investigaciones extends Component
               abort(401);
          } else {
         $this->users = User::with('Employee')->whereHas('Employee', function($query){
-            $query->WhereIn('position_id', [5,14,15,16,17,18]);  
+            $query->WhereIn('position_id', [5,14,15,16,17,18,4]);  
          })->get(); //Una consulta a la tabla de users y se asocia con el employee para hacer el filtro por cargo.
         $this->supervisores = User::with('Employee')->whereHas('Employee', function($query){
-            $query->WhereIn('position_id', [4, 9]);  
+            $query->WhereIn('position_id', [4, 9, 6, 5]);  
          })->get(); //Una consulta a la tabla de users y se asocia con el employee para hacer el filtro por cargo.
         $this->clasificacion = $solicitud;
         $this->solicitude = Solicitude::find($solicitud);
           }
     }
-    // para agregar campos para los planes acciones.
+    // para agregar mas campos para los planes acciones.
     public function addField()
     {
         
@@ -144,14 +142,6 @@ class Investigaciones extends Component
     public function ResgistroAnalisis()
     {
         $datos = $this->validate();
-        // $validatedData = $this->validate([
-        //     'inputs.*.acciones' => 'required',
-        //     'inputs.*.responsable' => 'required',
-        //     'inputs.*.fecha_programada' => 'required',
-        // ]);
-
-         $archivo = $this->archivo->store('public/Reclamos/Analisis');
-         $datos['archivo'] = str_replace('public/Reclamos/Analisis/', ' ', $archivo);
 
          $notificacionInvestigacion = Investigacion::create([
          'solicitude_id' => $this->clasificacion, 
@@ -160,7 +150,7 @@ class Investigaciones extends Component
          'causa_raiz' =>$datos['causa_raiz'],
          'evaluacion_eficacia' => $datos['evaluacion'],
          'fecha_programada' => $datos['fechaprog'],
-         'archivo' => $datos['archivo'],
+        //  'archivo' => $datos['archivo'],
          'codigo_generado' => $this->solicitude->codigo_generado,
         ]);
 
@@ -191,16 +181,17 @@ class Investigaciones extends Component
                 'causa' => $camp['causa'],
                ]);
          }
-
+       
+         // se actualiza al siguente estado.
          $affected = DB::table('solicitudes')
          ->where('id', $this->clasificacion)
          ->update(['estado' => 3]);
 
-         
-          Mail::to([$this->solicitude->correo,"EGananR@ransa.net", "WFuentesB@ransa.net", "smontenegrot@ransa.net"])->send(New notificacioninvestigacion($this->solicitude));
-          Mail::to([$this->solicitude->investigacion->user->email ,"smontenegrot@ransa.net"])->send(new notificacionresponsableacciones($this->solicitude));
+         // aqui se procede con los envio de correos asociado como cliente personal encargado y supervior encargado en las acciones
+          Mail::to([$this->solicitude->correo])->cc(["EGananR@ransa.net", "smontenegrot@ransa.net"])->send(New notificacioninvestigacion($this->solicitude));
+          Mail::to([$this->solicitude->investigacion->user->email])->cc(["smontenegrot@ransa.net"])->send(new notificacionresponsableacciones($this->solicitude));
           foreach ($this->solicitude->acciones as $accion ) {
-             Mail::to([$accion->userse->email ,"smontenegrot@ransa.net"])->send(new notificacionactividades($this->solicitude));
+             Mail::to([$accion->userse->email])->cc(["smontenegrot@ransa.net"])->send(new notificacionactividades($this->solicitude));
           }
         
          redirect()->route('adm.dashboard');

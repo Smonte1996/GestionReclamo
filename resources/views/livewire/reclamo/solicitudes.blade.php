@@ -1,8 +1,9 @@
-@push('styles')
+{{-- @push('styles')
 <link rel="stylesheet" href="{{ asset('css/rqr.css') }}">
-@endpush
+@endpush --}}
 <div>
     <div class="right_col" role="main">
+        <div class="">
             <div class="page-title">
                 <div class="title_left">
                     <h3>Listado de Reclamos</h3>
@@ -18,8 +19,8 @@
                     </div>
                 </div>
             </div>
- 
-            <div id="cuadroItem" class="cuadroItem">
+            <div class="clearfix"></div>
+            {{-- <div id="cuadroItem" class="cuadroItem">
                 <div class="x_panel">
                     <div class="x_content">
                         <div id="ItemProceso" class="view-horizontal">
@@ -61,20 +62,41 @@
                     </div>
 
                 </div>
-            </div>
+            </div> --}}
          <div class="row">
-            <table id="reclamos" class="text-green-500 table table-striped dt-responsive nowrap" style="width:100%">
+            <div class="col-md-12 col-sm-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <div class="mb-2">
+                            <div class="col-md-3">
+                            <a href="https://app.powerbi.com/view?r=eyJrIjoiYTMzZGYwNjAtMTljOS00OTRkLWIwOWItOTg1NDQ3NTNlYTliIiwidCI6IjMyZTAxNzYzLTQxZTItNDA5My1hZWQ2LTVhZjFmOWMzNzk2NSJ9" class="btn btn-sm btn-green-400 text-white" target="_blank">Indicador Power BI</a>
+                           </div>
+                           
+                        <div class="clearfix"></div>
+                </div>
+
+            <table id="reclamos" class="text-green-500 table table-striped" style="width:100%">
+                {{-- <div class="mb-2 col-md-3" style="width: 200px">
+                    <select name="" wire:model="estado" class="form-control">
+                       <option value="">Seleccionar opción</option>
+                      <option value="1">Clasificación</option>
+                      <option value="2">Investigación</option>
+                      <option value="3">En proceso</option>
+                      <option value="4">Cerrado</option>
+                      <option value="5">No procede</option>
+                    </select>
+                </div> --}}
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th data-priority="1">Codigo</th>
                         <th >Nombre</th>
                         <th>Correo</th>
-                        <th>Celular</th>
+                        <th data-priority="1">Celular</th>
                         <th data-priority="1">Cliente</th>
                         <th data-priority="1">sede</th>
-                        <th>Tipo Notificación</th>
-                        <th data-priority="1">Servicio</th>
+                        <th data-priority="1">Tipo Notificación</th>
+                        <th data-priority="2">Servicio</th>
                         <th>F. Registro</th>
                         <th>Descripcion</th>
                         <th data-priority="2"> Estado </th>
@@ -100,51 +122,66 @@
                             @switch($solicitud->estado)
 
                             @case(2)
-                            <span class="bg-green-500 p-1 rounded text-white">Investigación</span>
+                            @if (today()->diffInDays($solicitud->clasificacion->created_at) >= 5)
+                            <label class="bg-orange-500 p-1 btn-group btn-group-sm  rounded text-white text-center" style="font-size:11px;">Investigacion con {{today()->diffInDays($solicitud->clasificacion->created_at)}} dias de atraso</label>
+                            @else
+                            <label class="bg-green-500 btn-group btn-group-sm p-1 rounded text-white text-center" style="font-size: 11px;">Investigación</label>
+                            @endif
                             @break
                             @case(3)
-                            <span class="bg-lead-500 p-1 rounded text-white">En proceso</span>
+                            @if (today() > $solicitud->investigacion->fecha_programada)
+                            <label class="bg-orange-500 p-1 btn-group btn-group-sm rounded text-white text-center" style="font-size:11px;">Proceso con {{today()->diffInDays($solicitud->investigacion->fecha_programada)}} dias de atraso </label>
+                            @else
+                            <label class="bg-lead-500 btn-group btn-group-sm p-1 rounded text-white text-center" style="font-size:11px;">En proceso</label>
+                            @endif
                             @break
                             @case(4)
-                            <span class="bg-green-500 p-1 rounded text-white">Caso Resuelto</span>
+                            <span class="bg-green-500 p-1 btn-group btn-group-sm rounded text-white text-center" style="font-size:11px;">Caso Resuelto</span>
                             @break
                             @case(5)
-                            <span class="bg-orange-500 p-1 rounded text-white">Cerrado</span>
+                            <div class="btn-group btn-group-sm">
+                            <label class="bg-orange-500 p-1 rounded text-white text-center" style="font-size:11px;">Cerrado
                             @isset($solicitud->investigacion->argumento)
-                            <span class="bg-orange-500 p-1 rounded text-white">No procede</span>
+                            no procede
                             @endisset
                             @isset($solicitud->investigacion->correccion)
-                            <span class="bg-orange-500 p-1 rounded text-white">Corrección</span>
+                            Corrección
                             @endisset
+                           </label>
+                            </div>
                             @break
                             @default
+                            @if (today()->diffInDays($solicitud->created_at) >= 2)
+                            <label class="bg-orange-500 p-1 btn-group btn-group-sm rounded text-white text-center" style="font-size:11px;">Clasificacion con {{today()->diffInDays($solicitud->created_at)}} dias de atraso</label>
+                            @else
                             <span class="bg-green-500 p-1 rounded text-white">Clasificación</span>
+                            @endif
                             @endswitch
                         </td>
                         <td>
                             @switch($solicitud->estado)
                             @case(2)
-                            <div class="btn-group btn-group-sm " role="group" aria-label="">
-                                <span class="bg-lead-500 p-1 rounded text-white">Responsable Asignado</span>
-                            </div>
+                            <figure class="figure" title="{{$solicitud->clasificacion->users->name}}">
+                            <label class="bg-lead-500 p-1 btn-group btn-group-sm rounded text-white text-center" style="font-size:12px;">Responsable Asignado</label>
+                            </figure>
                             @break
 
                             @case(3)
                             <div class="btn-group btn-group-sm " role="group" aria-label="">
-                               
+
                                 <a href="{{route('adm.Reclamo.pdf', $solicitud->id)}}" target="_blank" rel="noreferrer noopener" class="border btn btn-orange-500 text-white"
                                     >
                                     <i class="fa-solid fa-file-pdf"></i>
                                 </a>
                                 <a href="{{ route('adm.Infor.reclamo', $solicitud->id) }}" class="btn btn-orange-500 text-white border" >
                                     <i class="fa fa-info"></i>
-                                </a> 
+                                </a>
                             </div>
                             @break
 
                             @case(4)
                             <div class="btn-group btn-group-sm " role="group" aria-label="">
-                              
+
                                 <a href="{{route('adm.Reclamo.pdf', $solicitud->id)}}" target="_blank" rel="noreferrer noopener" class="border btn btn-orange-500 text-white"
                                     >
                                     <i class="fa-solid fa-file-pdf"></i>
@@ -152,15 +189,15 @@
                                 <a href="{{ route('adm.Infor.reclamo', $solicitud->id) }}" class="btn btn-orange-500 text-white border" >
                                     <i class="fa fa-info"></i>
                                 </a>
-                            </div> 
+                            </div>
                             @break
-                             
+
                             @case(5)
                             <div class="btn-group btn-group-sm " role="group" aria-label="">
                                 <a href="{{route('adm.inf.no-procede', $solicitud->id)}}" class="btn btn-orange-500 text-white border" >
                                     <i class="fa fa-info"></i>
                                 </a>
-                            </div>  
+                            </div>
                             @break
 
                             @default
@@ -169,7 +206,7 @@
                                 <a href="{{ route('adm.Clasificacion', $solicitud->id) }}" class="btn btn-orange-500 text-white border">
                                     <i class="fa fa-user"></i>
                                     Asignar
-                                </a> 
+                                </a>
                             </div>
                             @endswitch
 
@@ -178,9 +215,13 @@
                     @endforeach
                 </tbody>
             </table>
+            </div>
          </div>
     </div>
 </div>
- 
+    </div>
+</div>
+</div>
+
 
 

@@ -78,7 +78,6 @@
                                             @endif
                                         </div>
 
-
                                     </div>
                                 </div>
                                 <x-jet-button type="submit">Registrar</x-jet-button>

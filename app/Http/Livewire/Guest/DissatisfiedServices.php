@@ -118,8 +118,7 @@ class DissatisfiedServices extends Component
         }
         $correos[] = $this->responsables["lider"]["email"];
         //Donde se ubica el responsable y se le envia el email
-        Mail::to($correos)->send(new Notificationservice($notification_service));
-
+       Mail::to($correos)->send(new Notificationservice($notification_service));
         return redirect()->route('adm.dashboard');
     }
 

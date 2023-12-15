@@ -9,10 +9,7 @@
                 <div class="title_right">
                     <div class="col-md-5 col-sm-5   form-group pull-right top_search">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
+                            <a href="https://app.powerbi.com/view?r=eyJrIjoiY2Y5YmZhYTgtMzJlMC00OGE5LTllYWUtYzQ5Y2JmNjBjNmRhIiwidCI6IjMyZTAxNzYzLTQxZTItNDA5My1hZWQ2LTVhZjFmOWMzNzk2NSJ9" class="btn btn-sm btn-green-400 text-white" target="_blank">Indicador Power BI</a>
                         </div>
                     </div>
                 </div>

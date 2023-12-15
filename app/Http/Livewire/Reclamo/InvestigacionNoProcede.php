@@ -64,7 +64,7 @@ class InvestigacionNoProcede extends Component
          ->where('id', $this->solicitude->id)
          ->update(['estado' => 5]);
       
-        Mail::to([$this->solicitude->correo, "EGananR@ransa.net", "WFuentesB@ransa.net", "smontenegrot@ransa.net"])->send(New notificacionNoProcede($this->solicitude));
+        Mail::to([$this->solicitude->correo])->cc(["EGananR@ransa.net", "smontenegrot@ransa.net"])->send(New notificacionNoProcede($this->solicitude));
          redirect()->route('adm.dashboard');
 
     }

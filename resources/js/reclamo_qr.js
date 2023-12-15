@@ -1,4 +1,5 @@
 $('#reclamos').DataTable({
     responsive: true,
-    autoWidth:false
+    autoWidth: false,
+    processing: true,
 });

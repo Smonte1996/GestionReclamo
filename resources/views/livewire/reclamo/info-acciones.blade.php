@@ -42,10 +42,10 @@
                                 <a href="{{ route('adm.reclamo') }}"
                                     class="btn btn-sm btn-orange-500">Regresar</a>
                             </div>
-                            <div class="row m-0 mt-3">
-                                <fieldset class="border border-2 rounded mb-2">
+                                <fieldset class="border border-2 rounded mb-2 mt-3">
                                     <legend class="rounded w-50 d-none d-sm-block float-none bg-green-500 text-white ps-5 ms-4">Información general</legend>
                                     <legend class="rounded float-none d-sm-none bg-green-500 text-white fs-6 p-1">Información general</legend>
+                                 <div class="row m-0 ">
                                 <div class="col-sm-12 col-md-4">
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1"
@@ -126,7 +126,7 @@
                             <div class="col-sm-12 col-md-6">
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1"
-                                        class="form-label text-lead-900">Coordinador Responsable</label>
+                                        class="form-label text-lead-900">Responsable</label>
                                     <div class="text-lead-500 fs-6">
                                          {{$solicitude->clasificacion->users->name}} 
                                     </div>
@@ -141,15 +141,19 @@
                                     </div>
                                 </div>
                             </div> 
+                            <fieldset class="border border-white">
+                            <legend class="rounded w-50 d-none d-sm-block float-none bg-lead-500 text-white ps-5 ms-4">Análisis causa - Metodologia Ishikawa</legend>
+                              <legend class="rounded float-none d-sm-none bg-lead-500 text-white fs-6 p-1">Análisis causa - Metodologia Ishikawa</legend>
+                            
                             <div class="col-sm-12 col-md-6">
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1"
                                         class="form-label text-lead-900">Categoria</label>
                                     <div class="text-lead-500 fs-6">
                                         <ul>
-                                        {{-- @foreach ( $solicitude->ishikawa as $ishikaw )
+                                         @foreach ( $solicitude->ishikawa as $ishikaw )
                                         <li>{{$ishikaw->categoria}}</li>
-                                        @endforeach --}}
+                                        @endforeach 
                                     </ul>
                                     </div>
                                 </div>
@@ -160,78 +164,87 @@
                                         class="form-label text-lead-900">Causa</label>
                                     <div class="text-lead-500 fs-6">
                                         <ul>
-                                        {{-- @foreach ( $solicitude->ishikawa as $ishikaw )
+                                        @foreach ( $solicitude->ishikawa as $ishikaw )
                                         <li>{{$ishikaw->causa}}</li>
-                                        @endforeach --}}
+                                        @endforeach 
                                     </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-6">
+                        </fieldset>
+                            <fieldset class="border border-white">
+                                <legend class="rounded w-50 d-none d-sm-block float-none bg-lead-500 text-white ps-5 ms-4">Análisis causa - efecto: 5 porqués</legend>
+                                  <legend class="rounded float-none d-sm-none bg-lead-500 text-white fs-6 p-1">Análisis causa - efecto: 5 porqués</legend>
+                                
+                            <div class="col-sm-12 col-md-3">
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1"
                                         class="form-label text-lead-900">Por que 1</label>
                                     <div class="text-lead-500 fs-6">
                                         <ul>
-                                        {{-- @foreach ( $solicitude->Analisis as $Analisi )
+                                         @foreach ( $solicitude->Analisis as $Analisi )
                                         <li>{{$Analisi->porque1}}</li>
-                                        @endforeach --}}
+                                        @endforeach 
                                     </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-6">
+                            <div class="col-sm-12 col-md-3">
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1"
                                         class="form-label text-lead-900">Por que 2</label>
                                     <div class="text-lead-500 fs-6">
                                         <ul>
-                                        {{-- @foreach ( $solicitude->Analisis as $Analisi )
+                                         @foreach ( $solicitude->Analisis as $Analisi )
                                         <li>{{$Analisi->porque2}}</li>
-                                        @endforeach --}}
+                                        @endforeach 
                                     </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-6">
+                            <div class="col-sm-12 col-md-2">
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1"
                                         class="form-label text-lead-900">Por que 3</label>
                                     <div class="text-lead-500 fs-6">
                                         <ul>
-                                        {{-- @foreach ( $solicitude->Analisis as $Analisi )
+                                        @foreach ( $solicitude->Analisis as $Analisi )
                                         <li>{{$Analisi->porque3}}</li>
-                                        @endforeach --}}
+                                        @endforeach 
                                     </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-6">
+                            <div class="col-sm-12 col-md-2">
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1"
                                         class="form-label text-lead-900">Por que 4</label>
                                     <div class="text-lead-500 fs-6">
                                         <ul>
-                                        {{-- @foreach ( $solicitude->Analisis as $Analisi )
+                                         @foreach ( $solicitude->Analisis as $Analisi )
                                         <li>{{$Analisi->porque4}}</li>
-                                        @endforeach --}}
+                                        @endforeach 
                                     </ul>
                                     </div>
                                 </div>
                             </div>
-                                 <div class="col-sm-12 col-md-12">
+                                 <div class="col-sm-12 col-md-2">
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1"
                                             class="form-label text-lead-900">Por que 5</label>
                                         <div class="text-lead-500 fs-6">
                                             <ul>
-                                            {{-- @foreach ( $solicitude->Analisis as $Analisi )
+                                             @foreach ( $solicitude->Analisis as $Analisi )
                                             <li>{{$Analisi->porque5}}</li>
-                                            @endforeach --}}
+                                            @endforeach 
                                         </ul>
                                         </div>
                                     </div>
                             </div>
+                        </fieldset>
+                            <fieldset class="border border-white">
+                                <legend class="rounded w-50 d-none d-sm-block float-none bg-lead-500 text-white ps-5 ms-4">Causa fundamental</legend>
+                                <legend class="rounded float-none d-sm-none bg-lead-500 text-white fs-6 p-1">Causa fundamental</legend>
                             <div class="col-sm-12 col-md-12">
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1"
@@ -241,7 +254,11 @@
                                     </div>
                                 </div>
                             </div> 
-                           
+                        </fieldset>
+                            <fieldset class="border border-white">
+                                <legend class="rounded w-50 d-none d-sm-block float-none bg-lead-500 text-white ps-5 ms-4">Planes de acciones</legend>
+                                <legend class="rounded float-none d-sm-none bg-lead-500 text-white fs-6 p-1">Planes de acciones</legend>
+                            
                             <div class="col-sm-12 col-md-4">
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1"
@@ -281,6 +298,11 @@
                                     </div>
                                 </div>
                             </div>
+                        </fieldset>
+                            <fieldset class="border border-white">
+                                <legend class="rounded w-50 d-none d-sm-block float-none bg-lead-500 text-white ps-5 ms-4">Eficacia</legend>
+                                <legend class="rounded float-none d-sm-none bg-lead-500 text-white fs-6 p-1">Eficacia</legend>
+                           
                             <div class="col-sm-12 col-md-4">
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1"
@@ -307,8 +329,13 @@
                                         {{$solicitude->investigacion->fecha_programada->format('d/m/y')}}
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
+                        </fieldset> 
                             @isset($solicitude->investigacion->cumplimiento)
+                            <fieldset class="border border-white">
+                                <legend class="rounded w-50 d-none d-sm-block float-none bg-lead-500 text-white ps-5 ms-4">Resultado de Eficacia</legend>
+                                <legend class="rounded float-none d-sm-none bg-lead-500 text-white fs-6 p-1">Resultado de Eficacia</legend>
+                            </fieldset>
                             <div class="col-sm-12 col-md-6">
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1"
@@ -338,14 +365,12 @@
                             </div>
                         </fieldset>
                             <div class="col-sm-12 col-md-12">
-                            <div class="text-center">
+                            <div class="text-center mb-3">
                                 <x-jet-button class="mt-4" wire:click="$emit('MostarAlerta', {{$solicitude->id}})">Reapertura
                                 </x-jet-button>
                             </div>
                         </div>
-                        @endisset
-                        </div> 
-                    </div>
+                        @endisset 
                          @isset($solicitude->encuesta->p1) 
                          <fieldset class="border border-2 rounded"> 
                             <legend class="rounded w-50 d-none d-sm-block float-none bg-green-500 text-white ps-5 ms-4">Calificación Cliente</legend>
@@ -407,6 +432,8 @@
                          @endisset 
                             </div>
                         </div>
+                    </div>
+                    </div>
                     </div>
                 </div>
             </div>

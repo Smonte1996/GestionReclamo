@@ -162,10 +162,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="overflow-scroll d-block imagesc">
-                         @foreach ($notification_service->attached_files as $files)
-                            <img class="rounded img-thumbnail" width="200" src="{{ asset($files->path) }}" alt="">
-                        @endforeach 
+                    <div class="overflow-scroll d-block ">
+                          @foreach ($notification_service->attached_files as $files)
+                            <img class="rounded img-thumbnail" width="200" src="{{ asset('notification_service/'.$files->name) }}" alt="">
+                        @endforeach  
                     </div>
 
                 </div>

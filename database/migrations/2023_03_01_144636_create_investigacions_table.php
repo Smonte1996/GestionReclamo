@@ -22,7 +22,7 @@ return new class extends Migration
             $table->char('causa_raiz', 250)->nullable();
             $table->char('evaluacion_eficacia', 250)->nullable();
             $table->date('fecha_programada')->nullable();
-            $table->char('observacion', 250)->nullable();
+            $table->text('observacion')->nullable();
             $table->string('archivo')->nullable();
             $table->char('argumento',250)->nullable();
             $table->string('imagen')->nullable();

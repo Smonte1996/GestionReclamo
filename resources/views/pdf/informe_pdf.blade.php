@@ -78,7 +78,7 @@
         }
     </style>
 
-    <title>Informe Muestreo</title>
+    <title>Informe Reclamo Cliente</title>
   </head>
   <body>
     <header>
@@ -208,13 +208,13 @@
                 <td align="left" class="border-bottom border-dark">
                     <label style="font-size:12px;">
                     <strong>
-                    Coordinador Responsable:
+                Responsable:
                     </strong>
                 </label>
                 </td>
                 <td colspan="5" class="border-bottom border-dark text-center">
                  <label style="font-size:12px;">
-                 {{$Solicitudes->investigacion->correccion}}
+                 {{$Solicitudes->clasificacion->users->name}}
                  </label>
                 </td>
             </tr>
@@ -490,6 +490,273 @@
        </table>
     </div>
 </fieldset>
+@isset($Solicitudes->encuesta->p1)
+<fieldset class="border border-2 border-dark mt-5">
+    <legend class="rounded w-50 d-none d-sm-block float-none verde text-white ps-5 ms-4">Calificación Cliente</legend>
+    <legend class="rounded float-none d-sm-none verde text-white fs-6 p-1">Calificación Cliente</legend>
+    <div class="text-center pt-4 m-2">
+<table width="100%">
+<tr>
+    <td colspan="4" align="center" class="grisclaro">
+        <label style="font-size:12px;">
+            <strong>
+                1. ¿En términos generales qué tan satisfecho te encuentras con el proceso de tu reclamo?
+            </strong>
+        </label>
+    </td>
+</tr>
+<tr>
+    <td align="left" >
+        <label style="font-size:12px;">
+            <strong>
+     Calificación:
+          </strong>
+    </label>
+    </td>
+    <td align="left" class="border-bottom border-dark">
+     <label style="font-size:12px;">
+    {{$Solicitudes->encuesta->p1}} 
+    @switch($Solicitudes->encuesta->p1)
+        @case(1)
+        <span class="naranja p-1 rounded text-white">Muy insastifecho</span>
+            @break
+        @case(2)
+        <span class="naranja p-1 rounded text-white">Muy insastifecho</span>
+        @break
+        @case(3)
+        <span class="naranja p-1 rounded text-white">Muy insastifecho</span>      
+        @break
+        @case(4)
+        <span class="naranja p-1 rounded text-white">Muy insastifecho</span>   
+        @break
+        @case(5)
+        <span class="naranja p-1 rounded text-white">Insastifecho</span>   
+        @break
+        @case(6)
+        <span class="naranja p-1 rounded text-white">Insastifecho</span>
+        @break
+        @case(7)
+        <span class="verde p-1 rounded text-white">Sastifecho</span>
+        @break
+        @case(8)
+        <span class="verde p-1 rounded text-white">Sastifecho</span>  
+        @break
+        @case(9)
+        <span class="verde p-1 rounded text-white">Muy sastifecho</span>    
+        @break
+        @case(10)
+        <span class="verde p-1 rounded text-white">Muy sastifecho</span>   
+        @break
+        @default
+    @endswitch
+    </label>
+    </td>
+    <td align="left">
+        <label style="font-size:12px;">
+            <strong>
+       Observacion:
+            </strong>
+        </label>
+    </td>
+    <td align="left" class="border-bottom border-dark">
+        <label style="font-size:12px;">
+       {{$Solicitudes->encuesta->ob1}}
+       </label>
+       </td>
+</tr>
+<tr>
+    <td colspan="4" align="center" class="grisclaro">
+        <label style="font-size:12px;">
+            <strong>
+                2. En términos generales, califique del 1 al 10 la gestión de su reclamo en cuanto a:
+            </strong>
+        </label>
+    </td>
+</tr>
+<tr>
+    <td align="left">
+        <label style="font-size:12px;">
+            <strong>
+                2.1. Atención:
+            </strong>
+        </label>
+    </td>
+    <td align="left" class="border-bottom border-dark">
+        <label style="font-size:12px;">
+       {{$Solicitudes->encuesta->p2}}
+
+       @switch($Solicitudes->encuesta->p2)
+       @case(1)
+       <span class="naranja p-1 rounded text-white">Muy insastifecho</span>
+           @break
+       @case(2)
+       <span class="naranja p-1 rounded text-white">Muy insastifecho</span>
+       @break
+       @case(3)
+       <span class="naranja p-1 rounded text-white">Muy insastifecho</span>      
+       @break
+       @case(4)
+       <span class="naranja p-1 rounded text-white">Muy insastifecho</span>   
+       @break
+       @case(5)
+       <span class="naranja p-1 rounded text-white">Insastifecho</span>   
+       @break
+       @case(6)
+       <span class="naranja p-1 rounded text-white">Insastifecho</span>
+       @break
+       @case(7)
+       <span class="verde p-1 rounded text-white">Sastifecho</span>
+       @break
+       @case(8)
+       <span class="verde p-1 rounded text-white">Sastifecho</span>  
+       @break
+       @case(9)
+       <span class="verde p-1 rounded text-white">Muy sastifecho</span>    
+       @break
+       @case(10)
+       <span class="verde p-1 rounded text-white">Muy sastifecho</span>   
+       @break
+       @default
+   @endswitch
+        </label>
+    </td>
+    <td align="left">
+        <label style="font-size:12px;">
+            <strong>
+       Observacion:
+            </strong>
+        </label>
+    </td>
+    <td align="left" class="border-bottom border-dark">
+        <label style="font-size:12px;">
+       {{$Solicitudes->encuesta->ob2}}
+       </label>
+       </td>
+</tr>
+<tr>
+    <td align="left">
+        <label style="font-size:12px;">
+            <strong>
+                2.2. Rapidez:
+            </strong>
+        </label>
+    </td>
+    <td align="left" class="border-bottom border-dark">
+        <label style="font-size:12px;">
+       {{$Solicitudes->encuesta->p3}}
+
+       @switch($Solicitudes->encuesta->p3)
+       @case(1)
+       <span class="naranja p-1 rounded text-white">Muy insastifecho</span>
+           @break
+       @case(2)
+       <span class="naranja p-1 rounded text-white">Muy insastifecho</span>
+       @break
+       @case(3)
+       <span class="naranja p-1 rounded text-white">Muy insastifecho</span>      
+       @break
+       @case(4)
+       <span class="naranja p-1 rounded text-white">Muy insastifecho</span>   
+       @break
+       @case(5)
+       <span class="naranja p-1 rounded text-white">Insastifecho</span>   
+       @break
+       @case(6)
+       <span class="naranja p-1 rounded text-white">Insastifecho</span>
+       @break
+       @case(7)
+       <span class="verde p-1 rounded text-white">Sastifecho</span>
+       @break
+       @case(8)
+       <span class="verde p-1 rounded text-white">Sastifecho</span>  
+       @break
+       @case(9)
+       <span class="verde p-1 rounded text-white">Muy sastifecho</span>    
+       @break
+       @case(10)
+       <span class="verde p-1 rounded text-white">Muy sastifecho</span>   
+       @break
+       @default
+   @endswitch
+        </label>
+    </td>
+    <td align="left">
+        <label style="font-size:12px;">
+            <strong>
+       Observacion:
+            </strong>
+        </label>
+    </td>
+    <td align="left" class="border-bottom border-dark">
+        <label style="font-size:12px;">
+       {{$Solicitudes->encuesta->ob3}}
+       </label>
+       </td>
+</tr>
+<tr>
+    <td align="left">
+        <label style="font-size:12px;">
+            <strong>
+                2.3. Solución final:
+            </strong>
+        </label>
+    </td>
+    <td align="left" class="border-bottom border-dark">
+        <label style="font-size:12px;">
+       {{$Solicitudes->encuesta->p4}}
+
+       @switch($Solicitudes->encuesta->p4)
+       @case(1)
+       <span class="naranja p-1 rounded text-white">Muy insastifecho</span>
+           @break
+       @case(2)
+       <span class="naranja p-1 rounded text-white">Muy insastifecho</span>
+       @break
+       @case(3)
+       <span class="naranja p-1 rounded text-white">Muy insastifecho</span>      
+       @break
+       @case(4)
+       <span class="naranja p-1 rounded text-white">Muy insastifecho</span>   
+       @break
+       @case(5)
+       <span class="naranja p-1 rounded text-white">Insastifecho</span>   
+       @break
+       @case(6)
+       <span class="naranja p-1 rounded text-white">Insastifecho</span>
+       @break
+       @case(7)
+       <span class="verde p-1 rounded text-white">Sastifecho</span>
+       @break
+       @case(8)
+       <span class="verde p-1 rounded text-white">Sastifecho</span>  
+       @break
+       @case(9)
+       <span class="verde p-1 rounded text-white">Muy sastifecho</span>    
+       @break
+       @case(10)
+       <span class="verde p-1 rounded text-white">Muy sastifecho</span>   
+       @break
+       @default
+   @endswitch
+        </label>
+    </td>
+    <td align="left">
+        <label style="font-size:12px;">
+            <strong>
+       Observacion:
+            </strong>
+        </label>
+    </td>
+    <td align="left" class="border-bottom border-dark">
+        <label style="font-size:12px;">
+       {{$Solicitudes->encuesta->ob4}}
+       </label>
+       </td>
+</tr>
+</table>
+    </div>
+</fieldset>
+@endisset 
 
     {{-- <div class="page-break"></div>
     <h1 class="text-center pt-3">3. Registro Fotográfico</h1>

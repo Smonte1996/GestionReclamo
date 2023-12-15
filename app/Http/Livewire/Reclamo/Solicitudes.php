@@ -8,10 +8,19 @@ use PDF;
 
 class Solicitudes extends Component
 {   
+    // public $estado;
+
+
     // Se hace la consulta de todo los datos de solicitudes para que se muestre en la vista.
-    public function render()
+    public function render() 
     {
-        $solicitudes = Solicitude::all();
+        // if (empty($this->estado)) {
+        //     $solicitudes = Solicitude::where('estado', $this->estado)->get();  
+        //    }else{
+        //    $solicitudes = Solicitude::where('estado', $this->estado)->get(); 
+        // //    dd($this->estado);  
+        //    }
+        $solicitudes = Solicitude::all()->whereIn('estado', [1,2,3,4,5]);
         return view('livewire.reclamo.solicitudes', compact('solicitudes'));
     }
 

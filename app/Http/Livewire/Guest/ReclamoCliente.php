@@ -50,7 +50,7 @@ class ReclamoCliente extends Component
     'fecha' => ['required', 'date'],
     'descripcion' => ['required', 'regex:/^(?=.*[a-zA-Z])(?=[^{}[\]+*]+$)/'],
     'titulo' => ['required', 'regex:/^(?=.*[a-zA-Z])(?=[^{}[\]+*]+$)/'],
-    'imagen' => ['nullable','max:3024','image','mimes:jpeg,png,jpg']
+    'imagen' => ['nullable','max:3024','image','mimes:jpeg,png,jpg,svg']
     ];
 
     // Aqui donde se una consulta y se montrara un sola vez.
@@ -108,7 +108,7 @@ class ReclamoCliente extends Component
             'imagen' => $datos['imagen'],
         ]);
 
-         Mail::to([$this->email , "EGananR@ransa.net", "WFuentesB@ransa.net", "smontenegrot@ransa.net"])->send(new notificacionRegistro($notificacionregistro));
+         Mail::to([$this->email])->cc(["EGananR@ransa.net", "smontenegrot@ransa.net"])->send(new notificacionRegistro($notificacionregistro));
 
         $this->reset(['Nombres','email','celular','Empresa','sede','tipo','servicio','sub_servicio','descripcion','titulo','fecha','imagen']);
 

@@ -77,7 +77,7 @@ class Confirmaracciones extends Component
        ->where('id', $this->solicitude->id)
        ->update(['estado' => 4]);
 
-       Mail::to([$this->solicitude->correo, "EGananR@ransa.net", "WFuentesB@ransa.net", "smontenegrot@ransa.net"])->send(new notificacioncierreaccion($this->solicitude));
+       Mail::to([$this->solicitude->correo])->cc(["EGananR@ransa.net", "smontenegrot@ransa.net"])->send(new notificacioncierreaccion($this->solicitude));
 
       return redirect()->route('adm.dashboard');
     }

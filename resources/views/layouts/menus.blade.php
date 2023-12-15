@@ -29,6 +29,9 @@
             <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
+                    @switch(auth()->user()->userable_type)
+                    @case('App\Models\Employee')
+                        
                     <li><a><i class="fa fa-whmcs"></i> Administración <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             @can('adm.activities.index')
@@ -67,6 +70,7 @@
                             @can('adm.clients.index')
                                 <li><a href="{{ route('adm.clients.index') }}">Clientes</a></li>
                             @endcan
+
                             @can('adm.suppliers.index')
                                 <li><a href="{{ route('adm.suppliers.index') }}">Proveedores</a></li>
                             @endcan
@@ -80,8 +84,44 @@
                             @can('adm.permissions.index')
                                 <li><a href="{{ route('adm.permissions.index') }}">Permisos</a></li>
                             @endcan
+                            <li><a>Adminstración Muestreo<span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li class="sub_menu">
+                                        <a href="{{route('adm.Niveles.index')}}">Niveles Estandar</a>
+                                    </li>
+                                    <li class="sub_menu">
+                                        <a href="{{ route('adm.Tamaño_muestra.index') }}">Tamaño de muestra</a>
+                                    </li>
+                                    <li class="sub_menu">
+                                        <a href="{{ route('adm.Matriz.index') }}">Matriz de defecto</a>
+                                    </li>
+                                    <li class="sub_menu">
+                                        <a href="{{ route('adm.Defectos.index') }}">Defectos</a>
+                                    </li>
+                                    <li class="sub_menu">
+                                        <a href="{{ route('adm.Aql.index') }}">Aql de defecto</a>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
+                    <li><a><i class="fa fa-spell-check"></i> Check Calidad <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            @can('adm.General.index')
+                            <li class="sub_menu"><a href="{{route('adm.practica.higiene')}}">Practicas de higiene Ransa</a></li>    
+                            @endcan
+
+                            @can('adm.General.index')
+                            <li class="sub_menu"><a href="{{route('adm.Practica.Maquila')}}">Prácticas de higiene maquila</a></li>    
+                            @endcan
+                            
+                            @can('adm.General.index')
+                            <li class="sub_menu"><a href="{{route('adm.practica.Proveedor')}}">Prácticas de higiene proveedores (estiba y limpieza)</a></li>    
+                            @endcan
+                            
+                        </ul>
+                    </li>
+                    
                     <li><a><i class="fa fa-whmcs"></i> Administración Reclamo <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">       
                              @can('adm.General.index') 
@@ -92,7 +132,15 @@
                                      href="{{ route('adm.Detalle.index') }}">Detalle Causal</a>
                              </li> 
                              @endcan
-
+                             @can('adm.General.index')
+                             <li><a>Adminstración Muestreo<span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li class="sub_menu"><a
+                                        href="{{ route('adm.data_logisticas.index') }}">Data Logistica</a>
+                                    </li>
+                                </ul>
+                             </li>
+                             @endcan
                         </ul>
                     </li>
                     <li><a><i class="fa fa-edit"></i> Gestión Calidad <span class="fa fa-chevron-down"></span></a>
@@ -103,6 +151,13 @@
                             @can('notifications.index')
                             <li><a href="{{ route('adm.reclamo') }}">Reclamos </a></li>
                             @endcan
+                            @can('notifications.index')
+                            <li><a href="{{route('adm.Muestreos.container.index')}}">Muestreos - Contenedor </a></li>
+                            @endcan
+                            @can('notifications.index')
+                            <li><a href="{{route('adm.p.h&g.index')}}">Practicas de higiene</a></li>    
+                            @endcan
+        
                             {{-- <li><a href="form_advanced.html">Advanced Components</a></li>
                             <li><a href="form_validation.html">Form Validation</a></li>
                             <li><a href="form_wizards.html">Form Wizard</a></li>
@@ -110,6 +165,20 @@
                             <li><a href="form_buttons.html">Form Buttons</a></li> --}}
                         </ul>
                     </li>
+                    @break
+                    @case('App\Models\Client')
+                    <li><a><i class="fa-solid fa-list-ul"></i> Listado Muestreo Cliente <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li class="sub_menu"><a
+                                href="{{route('adm.clients.muestreo.index')}}">Muestreos</a>
+                            </li>
+                        </ul>
+                    </li>
+                    @break
+
+                    @default
+                            
+                    @endswitch
                     {{-- <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="general_elements.html">General Elements</a></li>
