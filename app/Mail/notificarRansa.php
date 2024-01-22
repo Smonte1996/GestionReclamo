@@ -17,6 +17,7 @@ class notificarRansa extends Mailable
     use Queueable, SerializesModels;
 
     public $PersonalRansa;
+    public $nombre;
     /**
      * Create a new message instance.
      *
@@ -43,6 +44,7 @@ class notificarRansa extends Mailable
          
          foreach ($pdfm as $pdfa) {
            $supervisor = $pdfa->Supervisores->name;
+           $this->nombre = $pdfa->Supervisor->name;
            // $Responsable = array_unique($supervisor);
          }
  
@@ -70,7 +72,7 @@ class notificarRansa extends Mailable
          $pdfs = PDF::loadView('pdf.Practicashg', compact('pdfi','pdfm','supervisor', 'Todos'));
 
         $email = $this->markdown('mail.notificarRansa')->subject('Verificación de prácticas higiénicas personal Ransa');//.strtoupper($this->PracticasProveedor->solicitud));
-        $email->attachData($pdfs->setPaper('a4','landscape')->output(), "Practicas Higiene {$pdfi->fecha}.pdf");
+        $email->attachData($pdfs->setPaper('a4','landscape')->output(), "Practicas Higiene personal Ransa {$pdfi->fecha}.pdf");
         return $email;
 
     }

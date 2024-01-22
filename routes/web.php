@@ -9,6 +9,7 @@ use App\Http\Controllers\ActionController;
 use App\Http\Controllers\ClientController;
 use App\Http\Livewire\Reclamo\Solicitudes;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\PasilloController;
 use App\Http\Livewire\Guest\ReclamoCliente;
 use App\Http\Livewire\Reclamo\Correcciones;
 use App\Http\Livewire\Reclamo\InfnoProcede;
@@ -26,6 +27,7 @@ use App\Http\Livewire\Reclamo\Clasificaciones;
 use App\Http\Livewire\Reclamo\Investigaciones;
 use App\Http\Controllers\Aql_defectoController;
 use App\Http\Controllers\DepartamentController;
+use App\Http\Controllers\PasilloVistaController;
 use App\Http\Livewire\Higiene\FormularioHigiene;
 use App\Http\Livewire\Reclamo\Confirmaracciones;
 use App\Http\Livewire\Guest\DissatisfiedServices;
@@ -42,6 +44,7 @@ use App\Http\Controllers\NotificationserviceController;
 use App\Http\Livewire\Higiene\FormularioHigieneMaquila;
 use App\Http\Livewire\Higiene\FormularioHigieneProveedor;
 use App\Http\Controllers\Dissatisfaction_serviceController;
+use App\Http\Livewire\Checklist\FormularioChecklist;
 
 /*
 |--------------------------------------------------------------------------
@@ -125,9 +128,18 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
          Route::get('Praticas/pdf-Maquila/{id}', [PracticahgController::class, 'PdfMaquila'])->name('Pdf.maquila');
          Route::get('Practicas/tarea/{id}', [PracticahgController::class, 'PersonalRansa'])->name('Tarea.ransa');
          Route::get('Practicas/Tarea-Maquila/{id}', [PracticahgController::class, 'VistaMaquila'])->name('Tarea.Maquila');
-         Route::put('Confirmar/{id}',[PracticahgController::class, 'ConfirmartaskMaquila'])->name('Tasks.Maquila');
-         Route::put('PersonalRansa/{id}',[PracticahgController::class, 'ConfirmarTarea'])->name('Tareas.Ransas');
+         Route::put('Confirmar/{id}/{ids}',[PracticahgController::class, 'ConfirmartaskMaquila'])->name('Tasks.Maquila');
+         Route::put('PersonalRansa/{id}/{ids}',[PracticahgController::class, 'ConfirmarTarea'])->name('Tareas.Ransas');
+         Route::put('Praticas/pdf-Maquila/{id}/{ids}',[PracticahgController::class, 'update'])->name('Tasks.Proveedor');
 
+         //Rutas de Check list de pasillos.
+          Route::resource('ChecksPasillos', PasilloController::class)->except(['show'])->parameters(['checkPasillos', 'checkPasillo'])->names('check.pasillos');
+          Route::get('Eliminar/{id}',[PasilloController::class, 'Eliminar'])->name('ChecksPasillos.Eliminar');
+          Route::get('Check-Pasillo/Crear', FormularioChecklist::class)->name('Check.list');
+          Route::resource('Resulta Checklist', PasilloVistaController::class)->except(['show'])->parameters(['Pasillos'=>'Pasillovista'])->names('pasillos.vista');
+          Route::get('Informe /pdf /{id}',[PasilloVistaController::class, 'Informepdf'])->name('Checklist.pdf');
+
+          
         // Rutas para la administracion de Muestreos
         Route::resource('Nivel de especificacion estandar', Niveles_estandarController::class)->except(['show'])->parameters(['nivel' => 'nivel_estandar'])->names('Niveles');
         Route::resource('Tamaño de niveles', Tamano_muestraController::class)->except(['show'])->parameters(['tamano_muestra'=>'tamaño_muestra'])->names('Tamaño_muestra');

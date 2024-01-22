@@ -35,7 +35,7 @@ class notificacionFelicidades extends Mailable
         $this->solicitud = Solicitude::find($this->notificacionF->id);
         //  dd($this->solicitud);
         $nombreReclamo = strtoupper($this->solicitud->tipo_reclamo->name);
-        $email =  $this->markdown('mail.notificacionFelicidades')->subject("ATENCIÓN AL {$nombreReclamo}");
+        $email =  $this->markdown('mail.notificacionFelicidades')->subject("ATENCIÓN AL {$nombreReclamo}!");
 
         return $email;
     }

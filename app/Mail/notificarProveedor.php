@@ -17,7 +17,7 @@ class notificarProveedor extends Mailable
     use Queueable, SerializesModels;
 
     public $PracticasProveedor;
-    public  $PDFPROVEEDOR;
+    public $nombre3;
 
     /**
      * Create a new message instance.
@@ -42,6 +42,7 @@ class notificarProveedor extends Mailable
         $PDFsupervisor = Practica_proveedore::where('infor_practicahg_id', $this->PracticasProveedor->id)->get();
         foreach ($PDFsupervisor as $PDFRESPONSABLES) {
          $nombre  = $PDFRESPONSABLES->supervisor;
+         $this->nombre3 = $PDFRESPONSABLES->supervisor;
         }
       //    dd($PDFRESPONSABLE);
          function EvaluacionSupervisores($id)

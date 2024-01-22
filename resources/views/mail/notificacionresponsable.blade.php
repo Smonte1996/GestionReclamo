@@ -87,19 +87,19 @@ Usted ha sido asignado como responsable para investigar el reclamo del cliente.
 
 <tr>
 <td class="color-orange cuerpo mt">
-    Tu atención oportuna es importante mejora la experiencia de servicio de nuestros clientes.
+    Tu atención es importante para mejorar la experiencia de servicio de nuestros clientes.
 </td>
 </tr>
 <tr>
 <br>
 @switch($solicitud->clasificacion->causal_general_id)
     @case(1)
-    @component('mail::button', ['url' => route('adm.Investigacion.correccion', ['solicitud' =>$solicitud->clasificacion->solicitude_id]), 'color' => 'green'])
+    @component('mail::button', ['url' => route('adm.Investigacion.correccion', ['solicitud' => $solicitud->clasificacion->solicitude_id]), 'color' => 'green'])
         Acceder
         @endcomponent 
         @break
     @case(5)
-    @component('mail::button', ['url' => route('adm.Investigacion.correccion', ['solicitud' =>$solicitud->clasificacion->solicitude_id]), 'color' => 'green'])
+    @component('mail::button', ['url' => route('adm.Investigacion.correccion', ['solicitud' => $solicitud->clasificacion->solicitude_id]), 'color' => 'green'])
         Acceder
         @endcomponent 
         @break

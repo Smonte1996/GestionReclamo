@@ -62,7 +62,7 @@
                                         </tr>
                                     </table>
 
-                                    <form action="{{route('adm.Tareas.Ransas',$resultado1)}}" method="post" id="confirmaction">
+                                    <form action="{{route('adm.Tareas.Ransas',[$resultado1,$ids])}}" method="post" id="confirmaction">
                                         {{-- @php
                                             echo $resultado;
                                         @endphp --}}

@@ -118,11 +118,14 @@
                             @can('adm.General.index')
                             <li class="sub_menu"><a href="{{route('adm.practica.Proveedor')}}">Prácticas de higiene proveedores (estiba y limpieza)</a></li>    
                             @endcan
+                            @can('adm.General.index')
+                            <li class="sub_menu"><a href="{{route('adm.Check.list')}}"> Formulario Check de Pasillo</a></li>
+                            @endcan
                             
                         </ul>
                     </li>
                     
-                    <li><a><i class="fa fa-whmcs"></i> Administración Reclamo <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-whmcs"></i> Administración Calidad <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">       
                              @can('adm.General.index') 
                                 <li><a href="{{ route('adm.General.index') }}">Causal General</a></li>
@@ -141,6 +144,15 @@
                                 </ul>
                              </li>
                              @endcan
+                             @can('adm.General.index')
+                             <li><a>Adminstración Pasillos<span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li class="sub_menu"><a
+                                        href="{{ route('adm.check.pasillos.index') }}">Pasillos</a>
+                                </li>
+                                </ul>
+                            </li>
+                            @endcan
                         </ul>
                     </li>
                     <li><a><i class="fa fa-edit"></i> Gestión Calidad <span class="fa fa-chevron-down"></span></a>
@@ -156,6 +168,9 @@
                             @endcan
                             @can('notifications.index')
                             <li><a href="{{route('adm.p.h&g.index')}}">Practicas de higiene</a></li>    
+                            @endcan
+                            @can('notifications.index')
+                            <li><a href="{{route('adm.pasillos.vista.index')}}">Checklist de pasillo</a></li>  
                             @endcan
         
                             {{-- <li><a href="form_advanced.html">Advanced Components</a></li>

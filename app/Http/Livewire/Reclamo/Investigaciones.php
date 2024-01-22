@@ -2,20 +2,22 @@
 
 namespace App\Http\Livewire\Reclamo;
 
-use App\Mail\notificacionactividades;
-use App\Mail\notificacioninvestigacion;
-use App\Mail\notificacionresponsableacciones;
 use App\Models\User;
 use App\Models\Accion;
 use Livewire\Component;
-use App\Models\Analisis_efecto;
-use App\Models\Causa_ishikawa;
 use App\Models\Solicitude;
+use Illuminate\Support\Str;
 use App\Models\Clasificacion;
 use App\Models\Investigacion;
 use Livewire\WithFileUploads;
+use App\Models\Causa_ishikawa;
+use App\Models\Analisis_efecto;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\notificacionactividades;
+use Illuminate\Support\Facades\Crypt;
+use App\Mail\notificacioninvestigacion;
+use App\Mail\notificacionresponsableacciones;
 
 class Investigaciones extends Component
 {
@@ -70,8 +72,9 @@ class Investigaciones extends Component
     ];    
  // Aqui donde se una consulta y se montrara un sola vez y se valida si el id ya se lleno para que no haiga duplicado.
     public function mount($solicitud)
-    {   
-              $Investigacion = Solicitude::find($solicitud);
+    {    
+       
+          $Investigacion = Solicitude::find($solicitud);    
           if (!empty($Investigacion->investigacion->solicitude_id)) {
               abort(401);
          } else {

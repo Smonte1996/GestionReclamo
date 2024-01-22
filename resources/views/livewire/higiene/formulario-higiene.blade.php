@@ -22,7 +22,7 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Formulario de prácticas higiénicas del personal</h2>
+                            <h2>Formulario de prácticas higiénicas del personal Ransa</h2>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
@@ -400,7 +400,7 @@
                             <div class="pt-4 text-center">
                                  <button class="btn btn-primary" wire:click='ValidacionPH'>Guardar</button>
                                  @if (!is_null($this->Practicashg))
-                                 <button class="btn btn-danger" wire:click='Enviar'>Enviar</button>
+                                 <button class="btn btn-danger" wire:loading.attr='disabled' wire:click='Enviar' wire:target='Enviar' class="disabled:opacity-60">Enviar</button>
                                  @else
 
                                  @endif

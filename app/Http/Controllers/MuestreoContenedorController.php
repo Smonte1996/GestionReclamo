@@ -31,7 +31,7 @@ class MuestreoContenedorController extends Controller
     public function GenerarpdfHorizontal($id)
     {
         //
-        $pdf = Muestreo::find($id);
+        $pdf = Muestreo::find(decrypt($id));
         // $imagenes = Evidencia_muestreo::find($id);
         
         $pdfs = PDF::loadView('pdf.informeHorizontal', compact('pdf'));
@@ -48,14 +48,8 @@ class MuestreoContenedorController extends Controller
     public function Generarpdf($id)
     {
         //
-         $pdf = Muestreo::find($id);
-        // $imagenes = Evidencia_muestreo::find($id);
-    // foreach ($pdf->Defecto as $Defectos) {
-    //     $consultas[] = $Defectos->data_logistica_id;   
-    // }
-    // dd($consultas); 
-    // $consulta = Evidencia_muestreo::whereIn('data_logistica_id', $consultas)->get();
-    //dd($consulta); 
+         $pdf = Muestreo::find(decrypt($id));
+    
         $pdfs = PDF::loadView('pdf.informeVertical', compact('pdf'));
         
         return $pdfs->stream(strtoupper("Reporte Transporte $pdf->contenedor.pdf"));

@@ -128,6 +128,12 @@ class FormularioHigieneProveedor extends Component
             'pul2'=> $dato2['pul2'],
         ]);
 
+        if ($dato2['puc'] + $dato2['pbl'] + $dato2['pcl'] + $dato2['pna'] + $dato2['pcp'] + $dato2['pul'] < 12) {
+            $hgsr = DB::table('infor_practicahgs')
+            ->where('id', $this->Infor_ph->id)
+            ->update(['Estatus_tarea' => 1]);
+        }
+
         $this->reset('Personal','puc','puc1','puc2','pbl','pbl1','pbl2','pcl','pcl1','pcl2','pna','pna1','pna2','pcp','pcp1','pcp2','pul','pul1','pul2');
     }
 
@@ -148,23 +154,23 @@ class FormularioHigieneProveedor extends Component
        $this->emit('alert','Muchas gracias, el correo te llegara en cual quiere momento.');
 
        if ($this->Infor_ph->almacen == "Bodega Gye") {
-        switch ($this->Practica_Provvedor->Supervisores) {
+        switch ($this->Practica_Provvedor->supervisor) {
             case 'Magaly Marlene Guzman':
-                Mail::to('stevemontenegro_9@hotmail.com')->cc('EGananR@ransa.net')->send(new notificarProveedor($this->Infor_ph));
+                Mail::to('MGuzmanQ@ransa.net')->cc(['EGananR@ransa.net','wfuentesb@ransa.net','smontenegrot@ransa.net'])->send(new notificarProveedor($this->Infor_ph));
                 break;
 
             default:
-               Mail::to('stevenmontorres96@gmail.com')->cc('EGananR@ransa.net')->send(new notificarProveedor($this->Infor_ph));
+               Mail::to(['plozano@rubasa.com.ec','a-montesabel@hotmail.es'])->cc(['wfuentesb@ransa.net','smontenegrot@ransa.net','EGananR@ransa.net'])->send(new notificarProveedor($this->Infor_ph));
                 break;
           }
        } else {
-        switch ($this->Practica_Provvedor->Supervisores) {
+        switch ($this->Practica_Provvedor->supervisor) {
             case 'Lenin Jeison Itaz Chango':
-                Mail::to('smontenegrot@ransa.net')->cc('EGananR@ransa.net')->send(new notificarProveedor($this->Infor_ph));
+                Mail::to(['litazc@ransa.net'])->cc(['wfuentesb@ransa.net','smontenegrot@ransa.net','EGananR@ransa.net','ksinalina@ransa.net'])->send(new notificarProveedor($this->Infor_ph));
                 break;
 
             default:
-                Mail::to(['smontenegrot@ransa.net', 'stevenmontorres96@gmail.com'])->cc('EGananR@ransa.net')->send(new notificarProveedor($this->Infor_ph));
+                Mail::to(['plozano@rubasa.com.ec'])->cc(['wfuentesb@ransa.net','smontenegrot@ransa.net','EGananR@ransa.net'])->send(new notificarProveedor($this->Infor_ph));
                 break;
           }
        }

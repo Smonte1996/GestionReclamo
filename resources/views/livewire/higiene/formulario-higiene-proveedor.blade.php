@@ -89,7 +89,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-md-4" x-show="textselect == 'Bodega Uio'&& provedoruio == 'Estibas Torres'">
+                                <div class="col-sm-12 col-md-4" x-show="textselect == 'Bodega Uio'&& provedoruio == 'Estibadores A.B' || provedoruio == 'Logiktel'">
                                     <div class="mb-3">
                                     <label for="Supervisores" class="form-label fs-6 text-lead-500">Supervisor:</label>
                                     <select class="form-control rounded @error('Supervisores') is-invalid @enderror" wire:model.defer="Supervisores" name="Supervisores" id="Supervisores" required>
@@ -217,7 +217,7 @@
                             <div class="col-sm-12 col-md-4">
                                 <div class="mb-3">
 
-                                <label for="" class="form-label text-dark">Uniforme completo y limpio (ambiente seco, refrigerado o congelado).</label>
+                                <label for="" class="form-label text-dark">Uniforme completo y limpio.</label>
                             </div>
                                </div>
 

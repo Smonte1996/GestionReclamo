@@ -33,7 +33,7 @@
         </style>
     </head>
     <body>
-    <p class="negro">Estimado(a) Nombre del supervisor/responsable</p>
+    <p class="negro">Estimado(a) {{$nombre3}},</p>
 
     <p class="negro">Se adjunta el informe de la verificación de prácticas higiénicas
       realizadas a su personal a cargo del mes en curso, por favor realizar las correcciones en caso de cumplimientos

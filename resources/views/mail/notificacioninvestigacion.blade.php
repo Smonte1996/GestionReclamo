@@ -116,7 +116,7 @@ Plan de accion
 <tr>
 <td class="colir-lead">
 Reafirmamos nuestro compromiso de mejorar tu experiencia de servicio y agradecemos la confianza depositada en nosotros.
-A continuación te invitamos a participar de nuestra encuesta de satisfacción en la atención a tu reclamo <a href="{{url('Encuesta/cliente', [ 'solicitude' => $solicitud->id])}}">Dar clic aquí.</a>   
+A continuación te invitamos a participar de nuestra encuesta de satisfacción en la atención a tu reclamo <a href="{{url('Encuesta/cliente', [ 'solicitude' => encrypt($solicitud->id)])}}">Dar clic aquí.</a>   
 </td>   
 </tr>
 <tr>

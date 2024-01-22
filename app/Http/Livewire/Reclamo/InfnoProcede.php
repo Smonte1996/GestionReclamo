@@ -2,8 +2,12 @@
 
 namespace App\Http\Livewire\Reclamo;
 
-use App\Models\Solicitude;
 use Livewire\Component;
+use App\Models\Solicitude;
+use Illuminate\Support\Facades\DB;
+use App\Mail\notificacionReapertura;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\notificacionReaperturaResponsable;
 
 class InfnoProcede extends Component
 {
@@ -20,13 +24,13 @@ class InfnoProcede extends Component
     // El select de todo las solicitudes.
     public function mount($solicitude)
     {
-        $this->solicitude = Solicitude::find($solicitude);
+        $this->solicitude = Solicitude::find(decrypt($solicitude));
     }
 
     // la funcion para la reapertutra del caso es segun el cumplimiento.
     public function ReaperturaNoProcede($solicitude)
     {
-        $Investigacion = Solicitude::find($solicitude);
+        $Investigacion = Solicitude::find(decrypt($solicitude));
          if ($Investigacion) {
              $Investigacion->investigacion->delete();
          }

@@ -86,7 +86,7 @@
                                          </tr>
                                     </table>
 
-                                    <form action="{{route('adm.Tasks.Maquila',$resultado)}}" method="POST" id="confirmaction">
+                                    <form action="{{route('adm.Tasks.Maquila',[$resultado,$ids])}}" method="POST" id="confirmaction">
                                         @csrf
                                         @method('PUT')
                                     <table  width="100%" class="border border-dark" cellspacing="0" cellpadding="3">

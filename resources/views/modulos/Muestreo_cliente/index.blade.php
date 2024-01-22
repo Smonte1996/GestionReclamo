@@ -41,7 +41,7 @@
                                         <th>N° Guias</th>
                                         <th>Fecha Recepción</th>
                                         <th>Hora de Recepción</th>
-                                        <th>N° Pedido</th>
+                                        {{-- <th>N° Pedido</th> --}}
                                         <th data-priority="2">Responsable</th>
                                         <th data-priority="2">Acciones</th>
                                     </tr>
@@ -70,9 +70,9 @@
                                      <td>
                                          {{date("H:m A",strtotime($Muestreo->hora_recepcion))}} 
                                      </td>
-                                     <td>
+                                     {{-- <td>
                                          {{$Muestreo->n_pedido}} 
-                                     </td>
+                                     </td> --}}
                                      <td>
                                          {{$Muestreo->responsable}} 
                                      </td>

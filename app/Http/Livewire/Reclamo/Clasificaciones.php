@@ -59,7 +59,7 @@ class Clasificaciones extends Component
         // Aqui donde se una consulta y se montrara un sola vez y se valida si el id ya se lleno para que no haiga duplicado.
        public function mount($solicitude)
      {
-       $clasificacion = Solicitude::find($solicitude);
+       $clasificacion = Solicitude::find(decrypt($solicitude));
        if (!empty($clasificacion->clasificacion->solicitude_id)) {
            abort(401);
        } else {       
@@ -67,7 +67,7 @@ class Clasificaciones extends Component
             $query->WhereIn('position_id', [4,5,14,15,16,17,18]);  
          })->get();  //Una consulta a la tabla de users y se asocia con el employee para hacer el filtro por cargo.
          $this->Generals = Causal_general::all();
-        $this->solicitude = Solicitude::find($solicitude);
+        $this->solicitude = Solicitude::find(decrypt($solicitude));
         $this->Cliente = Client::all();
       }
     }

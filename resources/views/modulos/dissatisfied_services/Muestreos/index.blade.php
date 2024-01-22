@@ -35,7 +35,7 @@
                     <th>N° Guias</th>
                     <th>Fecha Recepción</th>
                     <th>Hora de Recepción</th>
-                    <th>N° Pedido</th>
+                    {{-- <th>N° Pedido</th> --}}
                     <th data-priority="2">Responsable</th>
                     <th data-priority="2">Acciones</th>
                 </tr>
@@ -64,19 +64,19 @@
                  <td>
                     {{date("H:m A",strtotime($Muestreo->hora_recepcion))}}
                  </td>
-                 <td>
+                 {{-- <td>
                     {{$Muestreo->n_pedido}}
-                 </td>
+                 </td> --}}
                  <td>
                     {{$Muestreo->responsable}}
                  </td>
                  <td>
                     <div class="btn-group btn-group-md " role="group" aria-label="">
-                        <a href="{{route('adm.view.reporte', $Muestreo->id)}}" class="btn bg-lead-500 text-white border" target="_blank" >
+                        <a href="{{route('adm.view.reporte', encrypt($Muestreo->id))}}" class="btn bg-lead-500 text-white border" target="_blank" >
                             <i class="fa-solid fa-file-pdf"></i>
                         </a>
 
-                    <a href="{{ route('adm.pdf.muestreo', $Muestreo->id) }}" class="btn btn-orange-500 text-white border" target="_blank" >
+                    <a href="{{ route('adm.pdf.muestreo', encrypt($Muestreo->id)) }}" class="btn btn-orange-500 text-white border" target="_blank" >
                         <i class="fa-solid fa-file-pdf"></i>
                     </a>
                     </div>

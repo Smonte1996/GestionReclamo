@@ -63,15 +63,18 @@
 
                 </div>
             </div> --}}
-         <div class="row">
+         <div class="row" wire:ignore>
             <div class="col-md-12 col-sm-12">
                 <div class="x_panel">
                     <div class="x_title">
                         <div class="mb-2">
-                            <div class="col-md-3">
+                            <div class="btn-group btn-group-sm" role="group" aria-label="">
                             <a href="https://app.powerbi.com/view?r=eyJrIjoiYTMzZGYwNjAtMTljOS00OTRkLWIwOWItOTg1NDQ3NTNlYTliIiwidCI6IjMyZTAxNzYzLTQxZTItNDA5My1hZWQ2LTVhZjFmOWMzNzk2NSJ9" class="btn btn-sm btn-green-400 text-white" target="_blank">Indicador Power BI</a>
-                           </div>
                            
+                           <button class="btn btn-sm bg-green-500 text-white" wire:click.prevent='DescargarReclamo'>
+                            Descargar Excel
+                         </button>
+                          </div>
                         <div class="clearfix"></div>
                 </div>
 
@@ -169,11 +172,11 @@
                             @case(3)
                             <div class="btn-group btn-group-sm " role="group" aria-label="">
 
-                                <a href="{{route('adm.Reclamo.pdf', $solicitud->id)}}" target="_blank" rel="noreferrer noopener" class="border btn btn-orange-500 text-white"
+                                <a href="{{route('adm.Reclamo.pdf', encrypt($solicitud->id))}}" target="_blank" rel="noreferrer noopener" class="border btn btn-orange-500 text-white"
                                     >
                                     <i class="fa-solid fa-file-pdf"></i>
                                 </a>
-                                <a href="{{ route('adm.Infor.reclamo', $solicitud->id) }}" class="btn btn-orange-500 text-white border" >
+                                <a href="{{ route('adm.Infor.reclamo', encrypt($solicitud->id)) }}" class="btn btn-orange-500 text-white border" >
                                     <i class="fa fa-info"></i>
                                 </a>
                             </div>
@@ -182,11 +185,11 @@
                             @case(4)
                             <div class="btn-group btn-group-sm " role="group" aria-label="">
 
-                                <a href="{{route('adm.Reclamo.pdf', $solicitud->id)}}" target="_blank" rel="noreferrer noopener" class="border btn btn-orange-500 text-white"
+                                <a href="{{route('adm.Reclamo.pdf', encrypt($solicitud->id))}}" target="_blank" rel="noreferrer noopener" class="border btn btn-orange-500 text-white"
                                     >
                                     <i class="fa-solid fa-file-pdf"></i>
                                 </a>
-                                <a href="{{ route('adm.Infor.reclamo', $solicitud->id) }}" class="btn btn-orange-500 text-white border" >
+                                <a href="{{ route('adm.Infor.reclamo', encrypt($solicitud->id)) }}" class="btn btn-orange-500 text-white border" >
                                     <i class="fa fa-info"></i>
                                 </a>
                             </div>
@@ -194,7 +197,7 @@
 
                             @case(5)
                             <div class="btn-group btn-group-sm " role="group" aria-label="">
-                                <a href="{{route('adm.inf.no-procede', $solicitud->id)}}" class="btn btn-orange-500 text-white border" >
+                                <a href="{{route('adm.inf.no-procede', encrypt($solicitud->id))}}" class="btn btn-orange-500 text-white border" >
                                     <i class="fa fa-info"></i>
                                 </a>
                             </div>
@@ -203,7 +206,7 @@
                             @default
                             <div class="btn-group btn-group-sm " role="group" aria-label="">
 
-                                <a href="{{ route('adm.Clasificacion', $solicitud->id) }}" class="btn btn-orange-500 text-white border">
+                                <a href="{{ route('adm.Clasificacion', encrypt($solicitud->id)) }}" class="btn btn-orange-500 text-white border">
                                     <i class="fa fa-user"></i>
                                     Asignar
                                 </a>

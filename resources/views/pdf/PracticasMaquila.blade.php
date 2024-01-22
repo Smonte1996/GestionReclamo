@@ -92,9 +92,9 @@
         footer {
             position: fixed;
             bottom: 0cm;
-            left: 0cm;
+            left: 0.5cm;
             right: 0cm;
-            /* height: 1cm; */
+            height: 1cm; 
             text-align: left;
             line-height: 10px;
         }
@@ -105,13 +105,13 @@
   <body>
     <header>
         <img src="img/logo.png" width="200">
-         <img src="img/hgs.png" width="500">
+         <img src="img/Maquila.png" width="650">
 
          {{-- <div class="naranja pb-4">
             <label><strong>Verificar el cumplimiento de criterios de orden y limpieza en almacén</strong></label>
           </div>  --}}
     </header>
-     <p class="naranja" style="font-size: 14px">Verificación del cumplimiento de prácticas higiénicas en el personal</p>
+     <p class="naranja" style="font-size: 14px">Verificación del cumplimiento de prácticas higiénicas en el personal de maquila</p>
     {{--<hr class="grosor"/> --}}
 
     <div class="text-center pt-1 m-2">
@@ -149,7 +149,7 @@
 
                 <td align="left" class="border border-dark" style="font-size:12px;">
                     <strong>
-                   Solicitud:
+                   Proveedor:
                     </strong>
                 </td>
                 <td colspan="" class="border border-dark text-center" style="font-size:12px;">
@@ -168,24 +168,24 @@
             Cumple(2)
         </td>
         <td colspan="2" align="center" class="border border-dark" style="font-size:12px;">
-            Cumple parcialmente(1)
+            No cumple(1)
         </td>
         <td align="center" class="border border-dark" style="font-size:12px;">
-            No cumple(0)
+            No aplica(0)
         </td>
 
     </tr>
-    {{-- <tr>
+    <tr>
         <td class="border border-dark" style="font-size:12px;" align="center">
-            El items evaluado se cumple en su totalidad. No se evidencia incumplimiento alguno (0 hallazgos).
+            Cuando el personal evaluado no presenta ninguna observación en el item.
         </td>
         <td colspan="2" class="border border-dark" style="font-size:12px;" align="center">
-            El items evaluado se cumple de forma parcial y se evidencia un bajo número de incumplimientos (1-2 hallazgos).
+           Cuando se requiera realizar una corrección al personal evaluado.
         </td>
         <td class="border border-dark" style="font-size:12px;" align="center">
-            El items evaluado se cumple de forma parcial y se evidencia un número significativo de incumplimientos (3 hallazgos o más).
+           Cuando el contexto de criterio de evaluación no es pertinente a la persona evaluada.
         </td>
-    </tr> --}}
+    </tr>
     <tr class="cabecera " align="center">
         <td colspan="4" class="border border-dark" style="font-size:14px;"><strong>Calificación</strong></td>
     </tr>
@@ -214,10 +214,12 @@
             1. Uniforme completo y limpio.
         </td>
         <td class="border border-start-0" style="font-size:12px;">
-            4. Uñas cortas, limpias y sin esmalte.
+            5. Botas limpias.
+           
         </td>
         <td class="border border-end-0" style="font-size:12px;">
-            7. No usa perfume.
+           
+            9. No usa accesorios (aretes, cadenas, anillo, etc).
         </td>
     </tr>
     <tr>
@@ -225,10 +227,10 @@
             2. Cabello recogido y/o amarrado.
         </td>
         <td class="border border-start-0" style="font-size:12px;">
-           5. Botas limpias.
+            6. Rostro sin maquillaje.
         </td>
         <td class="border border-end-0" style="font-size:12px;">
-           8. Manos limpias y  sin heridas.
+            10. Uniforme en buen estado.
         </td>
     </tr>
     <tr>
@@ -236,27 +238,29 @@
             3. Uso correcto de cofia.
         </td>
         <td class="border border-start-0" style="font-size:12px;">
-            6. Rostro sin maquillaje.
+            
+            7. No usa perfume.
         </td>
-        <td class="border border-start-0" style="font-size:12px;">
-            9. No usa accesorios (aretes, cadenas, anillo, etc).
+        <td class="border border-end-0" style="font-size:12px;">
+            11. Casco/ cofia en buen estado.
         </td>
     </tr>
      <tr>
         <td class="border border-start-0" style="font-size:12px;">
-            10. Uniforme en buen estado.
+            4. Uñas cortas, limpias y sin esmalte.
         </td>
 
         <td class="border border-start-0" style="font-size:12px;">
-            11. Casco/ cofia en buen estado.
+            
+            8. Manos limpias y  sin heridas.
         </td>
 
-        <td class="border border-start-0" style="font-size:12px;">
+        <td class="border border-end-0" style="font-size:12px;">
             12. Botas en buen estado.
         </td>
      </tr>
      <tr>
-        <td colspan="3" class="border border-start-0 text-center" style="font-size:12px;">
+        <td colspan="3" class="border border-start-0 border-end-0 text-center" style="font-size:12px;">
             13. Hace uso de guantes cuando corresponda.
         </td>
      </tr>
@@ -271,7 +275,7 @@
     <tr class="cabecera" align="center">
         <td colspan="9" class="border border-dark" style="font-size:13px;"><strong>Higiene personal</strong></td>
         <td colspan="3" class="border border-dark" style="font-size:13px;"><strong>Uniforme</strong></td>
-        <td colspan="2" class="border border-dark" style="font-size:13px;"><strong>Durante el trabajo</strong></td>
+        <td colspan="3" class="border border-dark" style="font-size:13px;"><strong>Durante el trabajo</strong></td>
         </tr>
 
     <tr>
@@ -563,7 +567,11 @@
         Porcentaje de cumplimiento
      </td>
      <td rowspan="2" colspan="3" class="border border-dark text-center" style="font-size:12px;">
-      <strong>{{round($Valor_total)}}%</strong>
+      <strong>
+      @php
+        echo round($contar / $PDFresponsable->count()*100).'%';
+      @endphp
+      </strong>
      </td>
  </tr>
  <tr>
@@ -581,18 +589,16 @@
 </table>
 
 
-       {{-- <footer>
-        <p class="fw-bold">FCME-0174
-            Rev. 02 </p>
-       </footer> --}}
+       <footer>
+        <p class="fw-bold">FCME-0138 Rev.3 </p>
+       </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-
+    
     <script type="text/php">
         if ( isset($pdf) ) {
             $pdf->page_script('
                 $font = $fontMetrics->get_font("Arial, Helvetica, sans-serif", "normal");
-                $pdf->text(270, 820, "Pág $PAGE_NUM de $PAGE_COUNT", $font, 10);
+                $pdf->text(370, 570, "Pág $PAGE_NUM de $PAGE_COUNT", $font, 10);
             ');
         }
 	</script>

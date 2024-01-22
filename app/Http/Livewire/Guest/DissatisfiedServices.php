@@ -112,7 +112,7 @@ class DissatisfiedServices extends Component
             }
         }
         //se agrega al responsable y al lider para el envio del las notificaciones y se agrega los correos ded calidad.
-        $correos = ['EGananR@ransa.net','WFuentesB@ransa.net','GBaldeonC@ransa.net','smontenegrot@ransa.net'];
+        $correos = ['EGananR@ransa.net','WFuentesB@ransa.net','ksinalina@ransa.net','smontenegrot@ransa.net'];
         foreach ($this->responsables['responsables'] as $key => $value) {
             $correos[] = $value['email'];
         }

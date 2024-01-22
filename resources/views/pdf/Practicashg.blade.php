@@ -92,9 +92,9 @@
         footer {
             position: fixed;
             bottom: 0cm;
-            left: 0cm;
+            left: 0.5cm;
             right: 0cm;
-            /* height: 1cm; */
+             height: 1cm;
             text-align: left;
             line-height: 10px;
         }
@@ -166,17 +166,17 @@
             </td>
 
         </tr>
-        {{-- <tr>
+        <tr>
             <td class="border border-dark" style="font-size:12px;" align="center">
-                El items evaluado se cumple en su totalidad. No se evidencia incumplimiento alguno (0 hallazgos).
+                La persona evaluada presenta todos los ítems completos del parámetro.
             </td>
             <td colspan="2" class="border border-dark" style="font-size:12px;" align="center">
-                El items evaluado se cumple de forma parcial y se evidencia un bajo número de incumplimientos (1-2 hallazgos).
+                Cuando el personal evaluado necesita corregir un parámetro del item evaluado. Ejemplo: (Casco limpio, en buen estado y con nombre y apellido) solo cumple con casco limpio pero el casco no tiene nombre y apellido.
             </td>
             <td class="border border-dark" style="font-size:12px;" align="center">
-                El items evaluado se cumple de forma parcial y se evidencia un número significativo de incumplimientos (3 hallazgos o más).
+                Cuando presenta un incumplimiento de alguno de los parámetros.
             </td>
-        </tr> --}}
+        </tr>
         <tr class="cabecera " align="center">
             <td colspan="4" class="border border-dark" style="font-size:14px;"><strong>Calificación</strong></td>
         </tr>
@@ -211,10 +211,10 @@
                         1. Uniforme completo y limpio (ambiente seco, refrigerado o congelado).
                     </td>
                     <td class="border border-start-0" style="font-size:12px;">
-                        4. No usa accesorios (reloj, cadena, anillo, pulsera, etc.).
+                        3. Casco limpio, en buen estado y con nombre y apellido.
                     </td>
                     <td class="border border-end-0" style="font-size:12px;">
-                        6. Uñas cortas y limpias (aplica para personal operativo).
+                        5. Cabello Correctamente peinado (mantiene buen aspecto).
                     </td>
                 </tr>
                 <tr>
@@ -222,10 +222,10 @@
                         2. Botas limpias, en buen estado y cordones atados.
                     </td>
                     <td class="border border-start-0" style="font-size:12px;">
-                        3. Casco limpio, en buen estado y con nombre y apellido.
+                        4. No usa accesorios (reloj, cadena, anillo, pulsera, etc.).
                     </td>
                     <td class="border border-end-0" style="font-size:12px;">
-                        5. Cabello Correctamente peinado (mantiene buen aspecto).
+                        6. Uñas cortas y limpias (aplica para personal operativo).
                     </td>
                 </tr>
 
@@ -390,14 +390,14 @@
                 <td colspan="2" class="border border-dark text-center" style="font-size:13px;">
                     <strong>{{$pdfm->count()}}</strong>
                   </td>
-                  <td rowspan="2" colspan="2" class="border border-dark cabecera text-center" style="font-size:12px;">
-                    Porcentaje de cumplimiento
+                  <td rowspan="1" colspan="2" class="border border-dark cabecera text-center" style="font-size:12px;">
+                    Resultado de la evaluación
                  </td>
-                 <td rowspan="2" colspan="2" class="border border-dark text-center" style="font-size:12px;">
+                 <td rowspan="1" colspan="2" class="border border-dark text-center" style="font-size:12px;">
                   <strong>{{round($Todos)}}%</strong>
                  </td>
              </tr>
-             <tr>
+             {{-- <tr>
                 <td colspan="5" class="border border-dark cabecera text-center" style="font-size:12px;">
                     Calificación por Porcentaje de Cumplimiento
                 </td>
@@ -414,7 +414,7 @@
                 @endif
                 </strong>
                 </td>
-             </tr>
+             </tr> --}}
               </table>
 
 
@@ -2513,10 +2513,9 @@
 
 
 
-       {{-- <footer>
-        <p class="fw-bold">FCME-0174
-            Rev. 02 </p>
-       </footer> --}}
+       <footer>
+        <p class="fw-bold">FCME-0054 Rev.3</p>
+       </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
@@ -2524,7 +2523,7 @@
         if ( isset($pdf) ) {
             $pdf->page_script('
                 $font = $fontMetrics->get_font("Arial, Helvetica, sans-serif", "normal");
-                $pdf->text(270, 820, "Pág $PAGE_NUM de $PAGE_COUNT", $font, 10);
+                $pdf->text(370, 570, "Pág $PAGE_NUM de $PAGE_COUNT", $font, 10);
             ');
         }
 	</script>

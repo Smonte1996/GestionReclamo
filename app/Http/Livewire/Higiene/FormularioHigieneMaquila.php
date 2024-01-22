@@ -192,7 +192,13 @@ class FormularioHigieneMaquila extends Component
         'observacion' => $this->Observa,
       ]);
 
-      $this->reset('Personal_Maquila', 'textselect', 'Observa', 'muc','muc1','muc2','mbl','mbl1','mbl2','mcl','mcl1','mcl2','mcp','mcp1','mcp2','mna','mna1','mna2','mul','mul1','mul2','mnp','mnp1','mnp2','mml','mml1','mml2','mnaa','mnaa','mnaa','mub','mub1','mub2','mcb','mcb1','mcb2','mbe','mbe1','mbe2','mhg','mhg1','mhg2');
+      if ($maquila['muc'] == 1 || $maquila['mbl'] == 1 || $maquila['mcl'] == 1 || $maquila['mcp'] == 1 || $maquila['mna'] == 1 || $maquila['mul'] == 1 || $maquila['mnp'] == 1 || $maquila['mml'] == 1 || $maquila['mnaa'] == 1 || $maquila['mub'] == 1 || $maquila['mcb'] == 1 || $maquila['mbe'] == 1 || $maquila['mhg'] == 1) {
+        $hgsr = DB::table('infor_practicahgs')
+        ->where('id', $this->Infor_ph->id)
+        ->update(['Estatus_tarea' => 1]);
+    }
+
+      $this->reset('Personal_Maquila', 'Observa', 'muc','muc1','muc2','mbl','mbl1','mbl2','mcl','mcl1','mcl2','mcp','mcp1','mcp2','mna','mna1','mna2','mul','mul1','mul2','mnp','mnp1','mnp2','mml','mml1','mml2','mnaa','mnaa','mnaa','mub','mub1','mub2','mcb','mcb1','mcb2','mbe','mbe1','mbe2','mhg','mhg1','mhg2');
 
       }
 
@@ -206,10 +212,10 @@ class FormularioHigieneMaquila extends Component
 
       switch ($this->Infor_ph->Proveedor) {
         case 'Dprissa':
-            Mail::to(['stevemontenegro_9@hotmail.com','stevenmontorres96@gmail.com'])->cc('EGananR@ransa.net')->send(new notificarMaquila($this->Infor_ph));
+            Mail::to(['nchango@dprissa.com','sbustos@dprissa.com','kandrade@dprissa.com','OcortezH@ransa.net'])->cc(['wfuentesb@ransa.net','smontenegrot@ransa.net','EGananR@ransa.net'])->send(new notificarMaquila($this->Infor_ph));
             break;
             case 'Seryproc':
-            Mail::to(['smontenegrot@ransa.net','stevenmontorres96@gmail.com'])->cc('EGananR@ransa.net')->send(new notificarMaquila($this->Infor_ph));
+            Mail::to(['seryproc@gmail.com','OcortezH@ransa.net'])->cc(['wfuentesb@ransa.net','smontenegrot@ransa.net', 'EGananR@ransa.net'])->send(new notificarMaquila($this->Infor_ph));
                 break;
             default:
             # code...

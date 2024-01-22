@@ -77,12 +77,11 @@ class FormularioHigiene extends Component
 
        $this->emit('alert','Muchas gracias, el correo te llegara en cual quiere momento.');
 
-    
            $correosuper = Practicahg::where('infor_practicahg_id', $this->Infor_ph->id)->get();
            foreach ($correosuper as $supervis) {
                $this->correos[] = $supervis->Supervisores->email;
            }
-           Mail::to(array_unique($this->correos))->cc(['egananr@ransa.net','wfuentesb@ransa.net'])->send(new notificarRansa($this->Infor_ph));
+           Mail::to(array_unique($this->correos))->cc(['egananr@ransa.net','wfuentesb@ransa.net','smontenegrot@ransa.net'])->send(new notificarRansa($this->Infor_ph));
        
        // dd(array_unique($this->correos));
 
@@ -139,6 +138,12 @@ class FormularioHigiene extends Component
         'ul2'=> $dato1['ul2'],
         ]);
 
+        if ($dato1['uc'] + $dato1['bl'] + $dato1['cl'] + $dato1['na'] + $dato1['cp'] + $dato1['ul'] < 12) {
+            $hgsr = DB::table('infor_practicahgs')
+            ->where('id', $this->Infor_ph->id)
+            ->update(['Estatus_tarea' => 1]);
+        }
+
         $this->reset('Personal','uc','uc1','uc2','bl','bl1','bl2','cl','cl1','cl2','na','na1','na2','cp','cp1','cp2','ul','ul1','ul2');
 
     }
@@ -151,7 +156,7 @@ class FormularioHigiene extends Component
                 $query->WhereIn('position_id', [4])->where('warehouse_id', 2)->where('departament_id', 1);
                  })->get();
             $this->personalUIO = Employee::where('warehouse_id', 2)->where('departament_id', 1)->whereIn('position_id', [2,3,4])->get();
-
+ 
             $this->supervisores = User::with('Employee')->whereHas('Employee', function($query){
                 $query->WhereIn('position_id', [4])->where('warehouse_id', 1)->where('departament_id', 1);
                 })->get();
@@ -181,7 +186,7 @@ class FormularioHigiene extends Component
 
             $consultar = $consultas;
 
-            $this->personalUIO = DB::table('employees')->where('warehouse_id', 2)->WhereNotIn('id', $consulta)->where(function($query){ $query->whereIn('position_id', [2,3,4])->where('departament_id', 1);})->get();
+            $this->personalUIO = DB::table('employees')->where('warehouse_id', 2)->WhereNotIn('id', $consultar)->where(function($query){ $query->whereIn('position_id', [2,3,4])->where('departament_id', 1);})->get();
 
          }
         }

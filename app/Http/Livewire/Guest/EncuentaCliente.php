@@ -30,11 +30,11 @@ class EncuentaCliente extends Component
 
        public function mount($solicitude)
     {
-        $calificacion = Solicitude::find($solicitude);
+        $calificacion = Solicitude::find(decrypt($solicitude));
         if (!empty($calificacion->encuesta->p1)) {
             abort(401);
         } else {
-         $this->solicitude = $solicitude;
+         $this->solicitude = decrypt($solicitude);
          }
     }
 
@@ -63,7 +63,7 @@ class EncuentaCliente extends Component
    
            ]);
    
-           Mail::to(['stevemontenegro_9@hotmail.com','smontenegrot@ransa.net'])->send(new notificacionRespuestacliente($this->solicitude));
+           Mail::to(['EGananR@ransa.net','smontenegrot@ransa.net'])->send(new notificacionRespuestacliente($this->solicitude));
            
            return redirect()->route('reclamo.visita');
        }

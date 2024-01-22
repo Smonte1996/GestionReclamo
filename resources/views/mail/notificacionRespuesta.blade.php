@@ -79,7 +79,7 @@ Hola,
 
 <tr>
 <td class="color-orange cuerpo mt">
-    Tu atención oportuna es importante mejorara la experiencia de servicio de nuestros clientes.
+    Tu atención es importante para mejorar la experiencia de servicio de nuestros clientes.
 </td>
 </tr>
 </table>

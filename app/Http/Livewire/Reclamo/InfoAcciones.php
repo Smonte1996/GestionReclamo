@@ -22,7 +22,7 @@ class InfoAcciones extends Component
     // El select de todo las solicitudes.
     public function mount($solicitude)
     {
-    $this->solicitude = Solicitude::find($solicitude);
+    $this->solicitude = Solicitude::find(decrypt($solicitude));
     }
 
     // la funcion para la reapertutra del caso es segun el cumplimiento.

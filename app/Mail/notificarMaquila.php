@@ -17,6 +17,7 @@ class notificarMaquila extends Mailable
     use Queueable, SerializesModels;
 
     public $PracticaMaquila;
+    public $nombre2;
 
     /**
      * Create a new message instance.
@@ -42,6 +43,7 @@ class notificarMaquila extends Mailable
 
       foreach ($PDFresponsable as $PDFRESPONSABLES) {
        $nombre  = $PDFRESPONSABLES->Supervisor;
+       $this->nombre2 = $PDFRESPONSABLES->Supervisor;
       }
 
 
@@ -78,7 +80,7 @@ class notificarMaquila extends Mailable
 
         $email = $this->markdown('mail.notificarMaquila')->subject('Verificación de prácticas higiénicas personal maquila');
 
-        $email->attachData($pdfs->setPaper('a4','landscape')->output(), "Practicas Higiene {$PDFPROVEEDOR->fecha}.pdf");
+        $email->attachData($pdfs->setPaper('a4','landscape')->output(), "Practicas Higiene Personal maquila {$PDFPROVEEDOR->fecha}.pdf");
 
         return $email;
     }

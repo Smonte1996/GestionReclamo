@@ -297,7 +297,7 @@ class Muestreos extends Component
                  break;
       
              default:
-             Mail::to(['vflores@quala.com.ec', 'mverduga@quala.com.ec'])->cc(['smontenegrot@ransa.net','CBozadaP@ransa.net','etenes@ransa.net','ksinalina@ransa.net', 'EGananR@ransa.net','azapatac@ransa.net', 'DCarchichablaC@ransa.net'])->send(new NotificacionInforme($this->Muestreos));
+             Mail::to(['vflores@quala.com.ec', 'mverduga@quala.com.ec'])->cc(['smontenegrot@ransa.net','CBozadaP@ransa.net','etenes@ransa.net','ksinalina@ransa.net', 'EGananR@ransa.net','azapatac@ransa.net', 'litazc@ransa.net'])->send(new NotificacionInforme($this->Muestreos));
                  break;
          }
            return redirect()->route('muestreo.cliente');
@@ -364,20 +364,8 @@ class Muestreos extends Component
           $this->datas = Data_logistica::where('id', $this->sku)->get();
        };
 
-  //      if(empty($this->sku)) {
-  //       $this->logis = Data_logistica::find($this->sku);
-  //      }if($this->sku){ 
-  //        $this->logis = Data_logistica::find($this->sku);
-  //      if(today()->diffInDays($this->fecha_elaboracion) + today()->diffInDays($this->fecha_vencimiento) == $this->logis->vida_util) {
-  //         $this->vida_logistica = "Si";
-
-  //      }if(today()->diffInDays($this->fecha_elaboracion) + today()->diffInDays($this->fecha_vencimiento) <> $this->logis->vida_util) {
-  //           $this->vida_logistica = "No";
-  //         } else {
-  //           // $this->vida_logistica = "No aplica";
-  //   }
-  // }
-
+  
+//aqui se hace la consulta a la tabla de la data_logistica pero proceder con la validacion con la vida ultil del porducto.
   if (empty($this->sku)) {
     $this->logis = Data_logistica::find($this->sku);
  } if ($this->sku) {
@@ -386,8 +374,9 @@ class Muestreos extends Component
     $diasElaboracion = (strtotime($this->fecha_elaboracion)/(60*60*24));
     $diasVencimiento = (strtotime($this->fecha_vencimiento)/(60*60*24));
     $vidaUtilAjustada = $this->logis->vida_util;
-    $articulo = $this->logis->sku_quala;
+    $articulo = trim($this->logis->sku_quala);
     $skuar = ['19780305','19780107','5762300','21340000','13750000'];
+    // dd($articulo);
     if (!in_array($articulo, $skuar, true)) {
     if ($diasElaboracion <= 19782 && $diasVencimiento >=19782){
     $vidaUtilAjustada = $vidaUtilAjustada + (1);
@@ -406,6 +395,7 @@ class Muestreos extends Component
     } else {
         $this->vida_logistica = "No";
     }
+    
 }
 
 

@@ -35,7 +35,7 @@
                                     <table width="100%" class="pt-3 border border-dark" cellspacing="0" cellpadding="3">
                                         <tr>
                                             <td class="border border-start-0" style="font-size:12px; color:black;">
-                                                1. Uniforme completo y limpio (ambiente seco, refrigerado o congelado).
+                                                1. Uniforme completo y limpio.
                                             </td>
                                             <td class="border border-start-0" style="font-size:12px; color:black;">
                                                 4. No usa accesorios (reloj, cadena, anillo, pulsera, etc.).
@@ -57,7 +57,7 @@
                                         </tr>
                                     </table>
 
-                                    <form action="{{ route('adm.p.h&g.update', $resultado) }}" method="post" id="confirmaction">
+                                    <form action="{{ route('adm.Tasks.Proveedor', [$resultado, $ids]) }}" method="post" id="confirmaction">
                                         {{-- @php
                                             echo $resultado;
                                         @endphp --}}
